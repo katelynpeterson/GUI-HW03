@@ -3,12 +3,40 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:KPeterson_HW03"
         mc:Ignorable="d"
         Title="Time Catcher App"
         Height="350"
-        Width="525">
+        Width="525"
+        MouseRightButtonDown="MouseRightButtonDown_Info"
+        Name="TimeCatcherApp">
+    <Window.Resources>
+            <ResourceDictionary>
+        <ControlTemplate x:Key="IconButtonTemplate"
+                                 TargetType="{x:Type Button}">
+                    <Grid>
+                        <Rectangle Fill="{TemplateBinding Background}"
+                           Height="30"
+                           Width="30" />
+                        <Path />
+                        <ContentPresenter HorizontalAlignment="Center"
+                                          VerticalAlignment="Center" />
+                    </Grid>
+                </ControlTemplate>
 
+            <ControlTemplate x:Key="ProjectButtonTemplate" TargetType="{x:Type Button}">
+                <Grid>
+                    <Rectangle Fill="{TemplateBinding Background}"
+                               Height="80"
+                               Width="80"
+                               RadiusX="5"
+                               RadiusY="5" />
+                    <Path />
+                    <ContentPresenter HorizontalAlignment="Center"
+                                      VerticalAlignment="Center" />
+                </Grid>
+            </ControlTemplate>
+        </ResourceDictionary>
+    </Window.Resources>
     <!--Whole Window-->
     <Grid>
         <Grid.ColumnDefinitions>
@@ -34,12 +62,16 @@
                     Margin="5"
                     Background="White"
                     BorderThickness="0"
-                    Click="add_new_project">
+                    Click="add_new_project"
+                    Name="add_btn"
+                    Height="30"
+                    Width="30"
+                    Template="{DynamicResource IconButtonTemplate}">
                 <Image Width="auto"
                        Height="auto"
                        Source="/btn_resources/add.png"
-                       Name="Add_btn"
-                       ToolTip="Add" />
+                       Name="add_btn_img"
+                       ToolTip="Add Ctrl+N" />
             </Button>
 
             <Button Grid.Column="1"
@@ -47,11 +79,15 @@
                     Margin="5"
                     Background="White"
                     BorderThickness="0"
-                    Click="delete_project">
+                    Click="delete_project"
+                    Name="delete_btn"
+                    Height="30"
+                    Width="30"
+                    Template="{DynamicResource IconButtonTemplate}">
                 <Image Width="auto"
                        Height="auto"
                        Source="/btn_resources/trash.png"
-                       Name="Delete_btn"
+                       Name="delete_btn_img"
                        ToolTip="Delete" />
             </Button>
         </Grid>
@@ -65,44 +101,60 @@
                     Margin="5"
                     Background="White"
                     BorderThickness="0"
-                    Click="download_report">
+                    Click="download_report"
+                    Name="download_btn"
+                    Height="30"
+                    Width="30"
+                    Template="{DynamicResource IconButtonTemplate}">
                 <Image Width="auto"
                        Height="auto"
                        Source="/btn_resources/download.png"
-                       Name="Download_btn"
+                       Name="download_btn_img"
                        ToolTip="Download" />
-            </Button>
+                </Button>
+            
             <Button DockPanel.Dock="Right"
                     Padding="auto"
                     Margin="5"
                     Background="White"
                     BorderThickness="0"
-                    Click="share_report">
+                    Click="share_report"
+                    Name="share_btn"
+                    Height="30"
+                    Width="30"
+                    Template="{DynamicResource IconButtonTemplate}">
                 <Image Width="auto"
                        Height="auto"
                        Source="/btn_resources/share.png"
-                       Name="Share_btn"
+                       Name="share_btn_img"
                        ToolTip="Share" />
-            </Button>
+                            </Button>
+            
             <Button DockPanel.Dock="Right"
                     Padding="auto"
                     Margin="5"
                     Background="White"
                     BorderThickness="0"
-                    Click="view_report">
+                    Click="view_report"
+                    Name="view_report_btn"
+                    Height="30"
+                    Width="30"
+                    Template="{DynamicResource IconButtonTemplate}">
                 <Image Width="auto"
                        Height="auto"
                        Source="/btn_resources/report.png"
-                       Name="Report_btn"
-                       ToolTip="View Report" />
+                       Name="report_btn_img"
+                       ToolTip="View Report" />                
             </Button>
+            
             <TextBlock Name="current_project"
                        FontSize="30"
                        FontWeight="Bold"
                        HorizontalAlignment="Center"
                        VerticalAlignment="Center"
                        Width="auto"
-                       Height="auto">Home</TextBlock>
+                       Height="auto"
+                       TextWrapping="Wrap">Home</TextBlock>
         </DockPanel>
 
         <!--Projects-->
@@ -127,13 +179,14 @@
                             Padding="auto"
                             BorderThickness="0"
                             Name="btn01"
-                            Click="btn01_click">
+                            Click="btn01_click"
+                            Template="{DynamicResource ProjectButtonTemplate}">
                         <TextBox Name="Project01"
                                  Background="MediumSpringGreen"
                                  BorderThickness="0"
                                  TextWrapping="Wrap"
                                  TextAlignment="Center">Project NANO
-                        </TextBox>
+                        </TextBox>                        
                     </Button>
 
                     <Button Background="DodgerBlue"
@@ -143,14 +196,66 @@
                             Padding="auto"
                             BorderThickness="0"
                             Name="btn02"
-                            Click="btn02_click">
+                            Click="btn02_click"
+                            Template="{DynamicResource ProjectButtonTemplate}">
                         <TextBox Name="Project02"
                                  Background="DodgerBlue"
                                  BorderThickness="0"
                                  TextWrapping="Wrap"
                                  TextAlignment="Center">Project Awesome
                         </TextBox>
-                    </Button>
+                        </Button>
+
+                    <Button Background="LightSeaGreen"
+                            Height="80"
+                            Width="80"
+                            Margin="10"
+                            Padding="auto"
+                            BorderThickness="0"
+                            Name="btn03"
+                            Click="btn03_click"
+                            Template="{DynamicResource ProjectButtonTemplate}">
+                        <TextBox Name="Project03"
+                                 Background="LightSeaGreen"
+                                 BorderThickness="0"
+                                 TextWrapping="Wrap"
+                                 TextAlignment="Center">Project GUI
+                        </TextBox>
+                        </Button>
+
+                    <Button Background="Orange"
+                            Height="80"
+                            Width="80"
+                            Margin="10"
+                            Padding="auto"
+                            BorderThickness="0"
+                            Name="btn04"
+                            Click="btn04_click"
+                            Template="{DynamicResource ProjectButtonTemplate}">
+                        <TextBox Name="Project04"
+                                 Background="Orange"
+                                 BorderThickness="0"
+                                 TextWrapping="Wrap"
+                                 TextAlignment="Center">Project Cheese
+                        </TextBox>
+                        </Button>
+
+                    <Button Background="Coral"
+                            Height="80"
+                            Width="80"
+                            Margin="10"
+                            Padding="auto"
+                            BorderThickness="0"
+                            Name="btn05"
+                            Click="btn05_click"
+                            Template="{DynamicResource ProjectButtonTemplate}">
+                        <TextBox Name="Project05"
+                                 Background="Coral"
+                                 BorderThickness="0"
+                                 TextWrapping="Wrap"
+                                 TextAlignment="Center">Project Cool
+                        </TextBox>
+                        </Button>
 
                 </WrapPanel>
             </ScrollViewer>
@@ -172,20 +277,26 @@
                     Margin="5"
                     Background="White"
                     BorderThickness="0"
-                    Click="start_time">
+                    Click="start_time"
+                    Height="30"
+                    Width="30"
+                    Template="{DynamicResource IconButtonTemplate}">
                 <Image Width="auto"
                        Height="auto"
                        Source="/btn_resources/play.png"
                        Name="Start_btn"
                        ToolTip="Start" />
-            </Button>
+                </Button>
 
             <Button Grid.Column="1"
                     Padding="auto"
                     Margin="5"
-                    Background="White"
+                    Background="white"
                     BorderThickness="0"
-                    Click="stop_time">
+                    Click="stop_time"
+                    Height="30"
+                    Width="30"
+                    Template="{DynamicResource IconButtonTemplate}">
                 <Image Width="auto"
                        Height="auto"
                        Source="/btn_resources/stop.png"
@@ -198,11 +309,23 @@
                     Grid.ColumnSpan="2"
                     Padding="auto"
                     Margin="5"
-                    Background="White"
+                    Background="white"
                     BorderThickness="0"
                     FontSize="25"
                     FontWeight="Bold"
                     Click="submit_time">Submit Time
+                <Button.Template>
+                    <ControlTemplate TargetType="Button">
+                        <Grid>
+                            <Rectangle Fill="{TemplateBinding Background}"
+                                       Height="50"
+                                       Width="200" />
+                            <Path />
+                            <ContentPresenter HorizontalAlignment="Center"
+                                              VerticalAlignment="Center" />
+                        </Grid>
+                    </ControlTemplate>
+                </Button.Template>
             </Button>
 
         </Grid>
@@ -214,7 +337,7 @@
         </WrapPanel>
 
         <!--Report Viewer-->
-        <Grid Grid.Column="0"
+        <!--<Grid Grid.Column="0"
               Grid.Row="2">
 
             <ScrollViewer x:Name="ScrollViewer2"
@@ -225,6 +348,7 @@
                                TextWrapping="Wrap" />
                 </WrapPanel>
             </ScrollViewer>
-        </Grid>
+        </Grid>-->
+
     </Grid>
 </Window>

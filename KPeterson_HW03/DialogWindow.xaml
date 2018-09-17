@@ -8,15 +8,45 @@
         Title="Share Report"
         Height="350"
         Width="525">
+    <Window.CommandBindings>
+        <CommandBinding Command="ApplicationCommands.Close"
+                        Executed="CloseCommandHandler" />
+    </Window.CommandBindings>
 
     <!--Whole Window-->
-    <Grid Background="SeaGreen">
+    <Grid Background="LightSeaGreen">
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="2*" />
+            <RowDefinition Height=".5*" />
+        </Grid.RowDefinitions>
+
+        <Button Grid.Row="1"
+                Background="White"
+                Name="ok_btn"
+                Content="OK"
+                Command="ApplicationCommands.Close">
+            <Button.Template>
+                <ControlTemplate TargetType="Button">
+                    <Grid>
+                        <Rectangle Fill="{TemplateBinding Background}"
+                                   Height="50"
+                                   Width="80"/>
+                        <Path />
+                        <ContentPresenter HorizontalAlignment="Center"
+                                          VerticalAlignment="Center" />
+                    </Grid>
+                </ControlTemplate>
+            </Button.Template>
+
+        </Button>
+       
         <TextBlock Name="window2"
+                   Grid.Row="0"
                    VerticalAlignment="Center"
                    HorizontalAlignment="Center"
                    TextWrapping="Wrap"
                    FontSize="20"
-                   FontWeight="DemiBold"
-                   >SORRY! The share function has not been activated yet.</TextBlock>
+                   FontWeight="DemiBold">SORRY! This function has not been activated yet.</TextBlock>
     </Grid>
 </Window>

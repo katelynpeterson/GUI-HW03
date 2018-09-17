@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 
 namespace KPeterson_HW03
 {
@@ -23,13 +24,17 @@ namespace KPeterson_HW03
         public MainWindow()
         {
             InitializeComponent();
+            //this.AddHandler(Window.MouseRightButtonDownEvent, new MouseButtonEventHandler(MouseRightButtonDown_Info), true);
         }
 
+        //Timing buttons
         private void start_time(object sender, RoutedEventArgs e)
         {
-            current_time.Text = "start";
-            stopwatch.Start();
-            
+            if (!stopwatch.IsRunning)
+            {
+                current_time.Text = "Start";
+                stopwatch.Start();
+            }            
         }
 
         private void print_time()
@@ -61,17 +66,13 @@ namespace KPeterson_HW03
                 current_time.Text = String.Format("{0:00}:{1:00}:{2:00}", 0, 0, 0);
             }
         }
-
+   
+        //Project Buttons
         private void add_new_project(object sender, RoutedEventArgs e)
         {
-            Size size = new Size(80, 80);
-            Rect rect = new Rect(size);
-            Button button = new Button();
-
             if (btn01.Visibility == Visibility.Collapsed)
                 btn01.Visibility = Visibility.Visible;
-
-            }
+        }
 
         private void delete_project(object sender, RoutedEventArgs e)
         {
@@ -80,10 +81,8 @@ namespace KPeterson_HW03
 
         private void view_report(object sender, RoutedEventArgs e)
         {
-            if (File.Exists(path))
-                read_report.Text = File.ReadAllText(path);
-            else
-                read_report.Text = "File must be downloaded first";
+            DialogWindow window = new DialogWindow();
+            window.Show();
         }
 
         private void share_report(object sender, RoutedEventArgs e)
@@ -99,6 +98,7 @@ namespace KPeterson_HW03
             }
         }
 
+        //Display current project name as title
         private void btn01_click(object sender, RoutedEventArgs e)
         {
             current_project.Text = Project01.Text;
@@ -107,6 +107,53 @@ namespace KPeterson_HW03
         private void btn02_click(object sender, RoutedEventArgs e)
         {
             current_project.Text = Project02.Text;
+        }
+
+        private void btn03_click(object sender, RoutedEventArgs e)
+        {
+            current_project.Text = Project03.Text;
+        }
+
+        private void btn04_click(object sender, RoutedEventArgs e)
+        {
+            current_project.Text = Project04.Text;
+        }
+
+        private void btn05_click(object sender, RoutedEventArgs e)
+        {
+            current_project.Text = Project05.Text;
+        }
+
+        //Control start and stop with spacebar, Ctrl+N adds new project
+        protected override void OnKeyDown(KeyEventArgs e)
+        {
+            //Add a new project button
+            if (e.KeyboardDevice.Modifiers == ModifierKeys.Control && (e.Key == Key.N || e.SystemKey == Key.N))
+            {
+                if (btn01.Visibility == Visibility.Collapsed)
+                    btn01.Visibility = Visibility.Visible;
+            }
+
+            //Start the stopwatch if not already running
+            if ((e.Key == Key.Space || e.SystemKey == Key.Space) && !stopwatch.IsRunning)
+            {
+                current_time.Text = "Start";
+                stopwatch.Start();
+            }
+            else if (stopwatch.IsRunning)
+            {
+                stopwatch.Stop();
+                current_time.Text = "Stop";
+            }
+            base.OnKeyDown(e);
+        }
+
+        //Right click opens a new window
+        void MouseRightButtonDown_Info(object sender, MouseButtonEventArgs e)
+        {
+            var window = new DialogWindow();
+            window.Content = "Hello user who clicked the right mouse button!";
+            window.Show();
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿
 using System.Windows;
+using System.Windows.Input;
 
 namespace KPeterson_HW03
 {
@@ -11,6 +12,13 @@ namespace KPeterson_HW03
         public DialogWindow()
         {
             InitializeComponent();
+
+
+        }
+
+        private void CloseCommandHandler(object sender, RoutedEventArgs e)
+        {
+            this.Close();
         }
     }
 }
