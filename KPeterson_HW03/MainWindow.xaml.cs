@@ -102,29 +102,40 @@ namespace KPeterson_HW03
         private void btn01_click(object sender, RoutedEventArgs e)
         {
             current_project.Text = Project01.Text;
+            ProjectWindow project = new ProjectWindow();
+            project.Show();
         }
 
         private void btn02_click(object sender, RoutedEventArgs e)
         {
             current_project.Text = Project02.Text;
+            ProjectWindow project = new ProjectWindow();
+            project.Show();
         }
 
         private void btn03_click(object sender, RoutedEventArgs e)
         {
             current_project.Text = Project03.Text;
+            ProjectWindow project = new ProjectWindow();
+            project.Show();
         }
 
         private void btn04_click(object sender, RoutedEventArgs e)
         {
             current_project.Text = Project04.Text;
+            ProjectWindow project = new ProjectWindow();
+            project.Show();
         }
 
         private void btn05_click(object sender, RoutedEventArgs e)
         {
             current_project.Text = Project05.Text;
+            ProjectWindow project = new ProjectWindow();
+            project.Show();
         }
 
         //Control start and stop with spacebar, Ctrl+N adds new project
+        
         protected override void OnKeyDown(KeyEventArgs e)
         {
             //Add a new project button
@@ -155,5 +166,7 @@ namespace KPeterson_HW03
             window.Content = "Hello user who clicked the right mouse button!";
             window.Show();
         }
+
+        
     }
 }
