@@ -8,6 +8,7 @@ namespace KPeterson_HW03
     /// </summary>
     public partial class ProjectWindow : Window
     {
+        ViewModel_Project project = new ViewModel_Project();
         public ProjectWindow()
         {
             InitializeComponent();
@@ -15,6 +16,7 @@ namespace KPeterson_HW03
 
         private void menuClick_about(object sender, RoutedEventArgs e)
         {
+            
             if(about_text.Visibility == Visibility.Visible) {
                 about_text.Visibility = Visibility.Collapsed;
             }

@@ -11,10 +11,9 @@
                         CanExecute="CloseCommand_CanExecute"
                         Executed="CloseCommand_Executed" />
     </Window.CommandBindings>
-    <Window.Resources>
-        <!-- Data Source For Binding-->
-        <local:ProjectInfo x:Key="ProjectInfo" />
-    </Window.Resources>
+    <Window.DataContext>
+        <local:ViewModel_Project />
+    </Window.DataContext>
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition />
@@ -26,8 +25,8 @@
             <RowDefinition />
             <RowDefinition />
         </Grid.RowDefinitions>
-        <DockPanel>
-            <Menu DockPanel.Dock="Top"
+        <DockPanel Grid.ColumnSpan="2">
+            <Menu DockPanel.Dock="Left"
                   Background="Transparent">
                 <MenuItem Header="_File">
                     <MenuItem Header="_About"
@@ -36,18 +35,24 @@
                     <MenuItem Command="Close" />
                 </MenuItem>
             </Menu>
+
+            <Button Name="ViewProjects"
+                    Content="Display Projects"
+                    Command="{Binding DisplayProjects}" 
+                    DockPanel.Dock="Right"
+                    Width="100"/>
+
+            <TextBlock DockPanel.Dock="Left"
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Center"
+                       Name="about_text"
+                       Visibility="Collapsed">This is my project</TextBlock>
         </DockPanel>
-        <TextBlock Grid.Row="0"
-                   Grid.Column="1"
-                   HorizontalAlignment="Center"
-                   VerticalAlignment="Center"
-                   Name="about_text"
-                   Visibility="Collapsed">This is my project</TextBlock>
 
         <ListView Grid.Row="1"
                   Grid.ColumnSpan="2"
                   Name="listViewProjects"
-                  ItemsSource="{Binding Source={StaticResource ProjectInfo}, Path=Project}"
+                  ItemsSource="{Binding Path =ProjectList}"
                   SelectedIndex="0">
             <ListView.View>
                 <GridView>

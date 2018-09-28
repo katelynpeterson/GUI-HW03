@@ -18,13 +18,13 @@ namespace KPeterson_HW03
         string elapsedTime = "";
         DateTime today = DateTime.Today;
         string path = Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + "\\TimeCatcher_myTime.txt";
+        
 
         List<String> list = new List<string>();
 
         public MainWindow()
         {
             InitializeComponent();
-            //this.AddHandler(Window.MouseRightButtonDownEvent, new MouseButtonEventHandler(MouseRightButtonDown_Info), true);
         }
 
         //Timing buttons

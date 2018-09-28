@@ -11,6 +11,10 @@ namespace KPeterson_HW03
         private ObservableCollection<Info> _info
             = new ObservableCollection<Info>();
 
+        public Projects(int id, string name)
+        {   _id = id;
+            _name = name;
+        }
 
         public int ID
         {
@@ -65,6 +69,12 @@ namespace KPeterson_HW03
         private DateTime _date;
         private string _skill;
 
+        public Info(int id, DateTime date, string skill)
+        {
+            _id = id;
+            _date = date;
+            _skill = skill;
+        }
 
         public int ID
         {
@@ -83,7 +93,7 @@ namespace KPeterson_HW03
             set
             {
                 _date = value;
-                OnPropertyChanged("Date");
+               OnPropertyChanged("Date");
             }
         }
 
@@ -94,11 +104,9 @@ namespace KPeterson_HW03
             set
             {
                 _skill = value;
-                OnPropertyChanged("Skill");
+               OnPropertyChanged("Skill");
             }
         }
-
-
         #region INotifyPropertyChanged Members 
 
 
@@ -115,7 +123,6 @@ namespace KPeterson_HW03
 
 
         #endregion
-
 
     }
 }
