@@ -36,13 +36,7 @@
                 </MenuItem>
             </Menu>
 
-            <Button Name="ViewProjects"
-                    Content="Display Projects"
-                    Command="{Binding DisplayProjects}" 
-                    DockPanel.Dock="Right"
-                    Width="100"/>
-
-            <TextBlock DockPanel.Dock="Left"
+            <TextBlock DockPanel.Dock="Right"
                        HorizontalAlignment="Center"
                        VerticalAlignment="Center"
                        Name="about_text"

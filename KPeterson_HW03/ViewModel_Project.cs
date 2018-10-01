@@ -21,9 +21,26 @@ namespace KPeterson_HW03
 
 
             NewProject = new Projects(2, "Project Awesome");
-            NewProject.Info.Add(new Info(1, new DateTime(2018, 1, 1), "UX"));
-            NewProject.Info.Add(new Info(1, new DateTime(2018, 2, 1), "DB"));
+            NewProject.Info.Add(new Info(2, new DateTime(2018, 10, 5), "JS"));
+            NewProject.Info.Add(new Info(3, new DateTime(2018, 12, 11), "HTML"));
+            NewProject.Info.Add(new Info(4, new DateTime(2018, 2, 11), "CSS"));
             _projectList.Add(NewProject);
+
+            NewProject = new Projects(3, "Project NANO" );
+            NewProject.Info.Add(new Info(1, new DateTime(2018, 7, 1), "HTML" ));
+            NewProject.Info.Add(new Info(1, new DateTime(2018, 7, 15), "SEO" ));
+            NewProject.Info.Add(new Info(1, new DateTime(2018, 9, 10), "JSON" ));
+            NewProject.Info.Add(new Info(1, new DateTime(2018, 8, 10), "PHP" ));
+            NewProject.Info.Add(new Info(1, new DateTime(2018, 9, 10), "CSS" ));
+            _projectList.Add(NewProject);
+
+
+            NewProject = new Projects(4, "Project Cheese" );
+            NewProject.Info.Add(new Info(1, new DateTime(2018, 9, 4), "JS" ));
+            NewProject.Info.Add(new Info(3, new DateTime(2018, 9, 28), "PHP" ));
+            NewProject.Info.Add(new Info(1, new DateTime(2018, 9, 10), "CSS" ));
+            _projectList.Add(NewProject);
+
         }
 
         private ObservableCollection<Projects> _projectList;
@@ -32,51 +49,6 @@ namespace KPeterson_HW03
             get { return _projectList; }
         }
 
-        private ICommand displayProjects;
-        public ICommand DisplayProjects
-        {
-
-            get
-            {
-                return displayProjects
-                    ?? (displayProjects = new ActionCommand(() =>
-                    {
-                        MakeProjects();
-                    }));
-            }
-        }
-
-        protected void MakeProjects()
-        {
-            _projectList = new ObservableCollection<Projects>();
-
-            NewProject = new Projects(1, "Project Cool");
-            NewProject.Info.Add(new Info(1, new DateTime(2018, 1, 1), "UX"));
-            NewProject.Info.Add(new Info(1, new DateTime(2018, 2, 1), "DB"));
-            _projectList.Add(NewProject);
-
-
-            NewProject = new Projects(2, "Project Awesome");
-            NewProject.Info.Add(new Info(1, new DateTime(2018, 1, 1), "UX"));
-            NewProject.Info.Add(new Info(1, new DateTime(2018, 2, 1), "DB"));
-            _projectList.Add(NewProject);
-
-
-            //c = new Projects() { ID = 3, Name = "Project NANO" };
-            //c.Info.Add(new Info() { ID = 1, Date = new DateTime(2018, 7, 1), Skill = "HTML" });
-            //c.Info.Add(new Info() { ID = 1, Date = new DateTime(2018, 7, 15), Skill = "SEO" });
-            //c.Info.Add(new Info() { ID = 1, Date = new DateTime(2018, 9, 10), Skill = "JSON" });
-            //c.Info.Add(new Info() { ID = 1, Date = new DateTime(2018, 8, 10), Skill = "PHP" });
-            //c.Info.Add(new Info() { ID = 1, Date = new DateTime(2018, 9, 10), Skill = "CSS" });
-            //_projectList.Add(c);
-
-
-            //c = new Projects() { ID = 4, Name = "Project Cheese" };
-            //c.Info.Add(new Info() { ID = 1, Date = new DateTime(2018, 9, 4), Skill = "JS" });
-            //c.Info.Add(new Info() { ID = 3, Date = new DateTime(2018, 9, 28), Skill = "PHP" });
-            //c.Info.Add(new Info() { ID = 1, Date = new DateTime(2018, 9, 10), Skill = "CSS" });
-            //_projectList.Add(c);
-        }
             public Projects NewProject { get; private set; }
 
         #region INotifyPropertyChanged Implementation
@@ -97,27 +69,5 @@ namespace KPeterson_HW03
         #endregion
 
     }
-    public class ActionCommand : ICommand
-    {
-        private readonly Action _action;
-
-        public ActionCommand(Action action)
-        {
-            _action = action;
-        }
-
-        public void Execute(object parameter)
-        {
-            _action();
-        }
-
-        public bool CanExecute(object parameter)
-        {
-            return true;
-        }
-
-        public event EventHandler CanExecuteChanged;
-    }
-
 }
 
