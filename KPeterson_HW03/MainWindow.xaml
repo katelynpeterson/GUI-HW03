@@ -3,12 +3,16 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:vm="clr-namespace:KPeterson_HW03"
         mc:Ignorable="d"
         Title="Time Catcher App"
         Height="350"
         Width="525"
         MouseRightButtonDown="MouseRightButtonDown_Info"
         Name="TimeCatcherApp">
+    <Window.DataContext>
+        <vm:ProjectButton />
+    </Window.DataContext>
     <Window.Resources>
             <ResourceDictionary>
         <ControlTemplate x:Key="IconButtonTemplate"
@@ -173,8 +177,8 @@
                            Name="wrap_panel">
 
                     <Button Background="MediumSpringGreen"
-                            Height="80"
-                            Width="80"
+                            Height="{Binding BtnHeight}"
+                            Width="{Binding BtnHeight}"
                             Margin="10"
                             Padding="auto"
                             BorderThickness="0"
@@ -185,13 +189,14 @@
                                  Background="MediumSpringGreen"
                                  BorderThickness="0"
                                  TextWrapping="Wrap"
-                                 TextAlignment="Center">Project NANO
-                        </TextBox>                        
+                                 TextAlignment="Center"
+                                 Text="Project NANO"/>
+                        
                     </Button>
 
                     <Button Background="DodgerBlue"
-                            Height="80"
-                            Width="80"
+                            Height="{Binding BtnHeight}"
+                            Width="{Binding BtnHeight}"
                             Margin="10"
                             Padding="auto"
                             BorderThickness="0"
@@ -207,8 +212,8 @@
                         </Button>
 
                     <Button Background="LightSeaGreen"
-                            Height="80"
-                            Width="80"
+                            Height="{Binding BtnHeight}"
+                            Width="{Binding BtnHeight}"
                             Margin="10"
                             Padding="auto"
                             BorderThickness="0"
@@ -224,8 +229,8 @@
                         </Button>
 
                     <Button Background="Orange"
-                            Height="80"
-                            Width="80"
+                            Height="{Binding BtnHeight}"
+                            Width="{Binding BtnHeight}"
                             Margin="10"
                             Padding="auto"
                             BorderThickness="0"
@@ -241,8 +246,8 @@
                         </Button>
 
                     <Button Background="Coral"
-                            Height="80"
-                            Width="80"
+                            Height="{Binding BtnHeight}"
+                            Width="{Binding BtnHeight}"
                             Margin="10"
                             Padding="auto"
                             BorderThickness="0"
@@ -337,18 +342,13 @@
         </WrapPanel>
 
         <!--Report Viewer-->
-        <!--<Grid Grid.Column="0"
+        <Grid Grid.Column="0"
               Grid.Row="2">
 
-            <ScrollViewer x:Name="ScrollViewer2"
-                          VerticalScrollBarVisibility="Auto"
-                          HorizontalScrollBarVisibility="Auto">
-                <WrapPanel Name="report_viewer">
-                    <TextBlock Name="read_report"
-                               TextWrapping="Wrap" />
-                </WrapPanel>
-            </ScrollViewer>
-        </Grid>-->
+            <Slider Maximum="{Binding MaxRange}"
+                    Minimum="{Binding MinRange}"
+                    Value="{Binding BtnHeight}" />
+        </Grid>
 
     </Grid>
 </Window>

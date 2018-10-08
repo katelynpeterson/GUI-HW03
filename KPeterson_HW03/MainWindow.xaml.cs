@@ -70,13 +70,12 @@ namespace KPeterson_HW03
         //Project Buttons
         private void add_new_project(object sender, RoutedEventArgs e)
         {
-            if (btn01.Visibility == Visibility.Collapsed)
-                btn01.Visibility = Visibility.Visible;
+            
         }
 
         private void delete_project(object sender, RoutedEventArgs e)
         {
-            btn01.Visibility = Visibility.Collapsed;
+            
         }
 
         private void view_report(object sender, RoutedEventArgs e)
@@ -141,8 +140,7 @@ namespace KPeterson_HW03
             //Add a new project button
             if (e.KeyboardDevice.Modifiers == ModifierKeys.Control && (e.Key == Key.N || e.SystemKey == Key.N))
             {
-                if (btn01.Visibility == Visibility.Collapsed)
-                    btn01.Visibility = Visibility.Visible;
+                
             }
 
             //Start the stopwatch if not already running
@@ -167,6 +165,13 @@ namespace KPeterson_HW03
             window.Show();
         }
 
-        
+        //private void projectSize_changed(object sender, RoutedPropertyChangedEventArgs<double> e)
+        //{
+        //    btn01.Height = btn01.Width = e.NewValue;
+        //    btn02.Height = btn02.Width = e.NewValue;
+        //    btn03.Height = btn03.Width = e.NewValue;
+        //    btn04.Height = btn04.Width = e.NewValue;
+        //    btn05.Height = btn05.Width = e.NewValue;
+        //}
     }
 }

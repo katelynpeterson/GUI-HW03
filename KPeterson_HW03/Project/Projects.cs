@@ -7,14 +7,10 @@ namespace KPeterson_HW03
     public class Projects : INotifyPropertyChanged
     {
         private int _id;
+        private DateTime _startDate;
         private string _name;
         private ObservableCollection<Info> _info
             = new ObservableCollection<Info>();
-
-        public Projects(int id, string name)
-        {   _id = id;
-            _name = name;
-        }
 
         public int ID
         {
@@ -23,6 +19,16 @@ namespace KPeterson_HW03
             {
                 _id = value;
                 OnPropertyChanged("ID");
+            }
+        }
+
+        public DateTime StartDate
+        {
+            get { return _startDate; }
+            set
+            {
+                _startDate = value;
+                OnPropertyChanged("StartDate");
             }
         }
 
@@ -68,13 +74,6 @@ namespace KPeterson_HW03
         private int _id;
         private DateTime _date;
         private string _skill;
-
-        public Info(int id, DateTime date, string skill)
-        {
-            _id = id;
-            _date = date;
-            _skill = skill;
-        }
 
         public int ID
         {

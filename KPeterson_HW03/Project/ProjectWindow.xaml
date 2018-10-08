@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:KPeterson_HW03"
         mc:Ignorable="d"
-        Title="ProjectWindow" Height="300" Width="300">
+        Title="ProjectWindow" Height="500" Width="300">
     <Window.CommandBindings>
         <CommandBinding Command="Close"
                         CanExecute="CloseCommand_CanExecute"
@@ -17,20 +17,22 @@
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition />
-            <ColumnDefinition />
         </Grid.ColumnDefinitions>
 
         <Grid.RowDefinitions>
             <RowDefinition Height=".25*" />
             <RowDefinition />
             <RowDefinition />
+            <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
-        <DockPanel Grid.ColumnSpan="2">
+        <DockPanel>
             <Menu DockPanel.Dock="Left"
                   Background="Transparent">
                 <MenuItem Header="_File">
                     <MenuItem Header="_About"
                               Click="menuClick_about" />
+                    <MenuItem Header="_View Calendar"
+                              Command="{Binding MenuClick_Calendar}"/>
                     <Separator />
                     <MenuItem Command="Close" />
                 </MenuItem>
@@ -44,9 +46,9 @@
         </DockPanel>
 
         <ListView Grid.Row="1"
-                  Grid.ColumnSpan="2"
                   Name="listViewProjects"
                   ItemsSource="{Binding Path =ProjectList}"
+                  SelectedItem="{Binding SelectedProject}"
                   SelectedIndex="0">
             <ListView.View>
                 <GridView>
@@ -56,12 +58,13 @@
                     <GridViewColumn Header="Name"
                                     DisplayMemberBinding="{Binding Name}"
                                     Width="100" />
+                    <GridViewColumn Header="StartDate"
+                                    DisplayMemberBinding="{Binding StartDate}" />
                 </GridView>
             </ListView.View>
         </ListView>
 
         <ListView Grid.Row="2"
-                  Grid.ColumnSpan="2"
                   Name="listViewInfo"
                   ItemsSource="{Binding ElementName=listViewProjects, Path=SelectedItem.Info}">
             <ListView.View>
@@ -78,5 +81,9 @@
                 </GridView>
             </ListView.View>
         </ListView>
+        <Calendar DataContext="{Binding SelectedProject}"
+            Grid.Row="3"
+                  DisplayDate="{Binding StartDate}"
+                  SelectedDate="{Binding StartDate}"/>
     </Grid>
 </Window>
