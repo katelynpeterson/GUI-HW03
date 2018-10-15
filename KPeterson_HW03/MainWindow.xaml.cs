@@ -43,6 +43,7 @@ namespace KPeterson_HW03
             elapsedTime = String.Format("{0:00}:{1:00}:{2:00}",
                 ts.Hours, ts.Minutes, ts.Seconds);
             current_time.Text = elapsedTime;
+            
         }
 
         private void stop_time(object sender, RoutedEventArgs e)
@@ -66,11 +67,17 @@ namespace KPeterson_HW03
                 current_time.Text = String.Format("{0:00}:{1:00}:{2:00}", 0, 0, 0);
             }
         }
+
+        public string TimeSpent()
+        {
+            return elapsedTime;
+        }
    
         //Project Buttons
         private void add_new_project(object sender, RoutedEventArgs e)
         {
-            
+            var newProject = new NewProjectWindow();
+            newProject.Show();
         }
 
         private void delete_project(object sender, RoutedEventArgs e)

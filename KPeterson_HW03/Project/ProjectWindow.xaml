@@ -5,7 +5,44 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:KPeterson_HW03"
         mc:Ignorable="d"
-        Title="ProjectWindow" Height="500" Width="300">
+        Title="ProjectWindow"
+        Height="700"
+        Width="1000">
+    <Window.Resources>
+        <Style x:Key="ErrorValidation"
+               TargetType="TextBox">
+            <Style.Triggers>
+                <Trigger Property="Validation.HasError"
+                         Value="true">
+                    <Setter Property="ToolTip"
+                            Value="{Binding RelativeSource={x:Static RelativeSource.Self}, Path=(Validation.Errors).CurrentItem.ErrorContent}" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style x:Key="DateErrorValidation"
+               TargetType="DatePicker">
+            <Style.Triggers>
+                <Trigger Property="Validation.HasError"
+                         Value="true">
+                    <Setter Property="ToolTip"
+                            Value="{Binding RelativeSource={x:Static RelativeSource.Self}, Path=(Validation.Errors).CurrentItem.ErrorContent}" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <local:GlobalStringFormatConverter x:Key="stringConverter" />
+
+        <DataTemplate x:Key="ProjectDetails">
+
+            <TextBlock Text="{Binding Name}"
+                       FontSize="30"
+                       FontStyle="Oblique"
+                       HorizontalAlignment="Center"
+                       Margin="10" />
+
+        </DataTemplate>
+    </Window.Resources>
     <Window.CommandBindings>
         <CommandBinding Command="Close"
                         CanExecute="CloseCommand_CanExecute"
@@ -17,13 +54,14 @@
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition />
+            <ColumnDefinition />
         </Grid.ColumnDefinitions>
 
         <Grid.RowDefinitions>
             <RowDefinition Height=".25*" />
             <RowDefinition />
             <RowDefinition />
-            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto" />
         </Grid.RowDefinitions>
         <DockPanel>
             <Menu DockPanel.Dock="Left"
@@ -31,8 +69,7 @@
                 <MenuItem Header="_File">
                     <MenuItem Header="_About"
                               Click="menuClick_about" />
-                    <MenuItem Header="_View Calendar"
-                              Command="{Binding MenuClick_Calendar}"/>
+
                     <Separator />
                     <MenuItem Command="Close" />
                 </MenuItem>
@@ -58,8 +95,13 @@
                     <GridViewColumn Header="Name"
                                     DisplayMemberBinding="{Binding Name}"
                                     Width="100" />
+                    <GridViewColumn Header="Type"
+                                    DisplayMemberBinding="{Binding Type}" />
                     <GridViewColumn Header="StartDate"
                                     DisplayMemberBinding="{Binding StartDate}" />
+                    <GridViewColumn Header="EndDate"
+                                    DisplayMemberBinding="{Binding EstimatedEndDate}" />
+
                 </GridView>
             </ListView.View>
         </ListView>
@@ -82,8 +124,63 @@
             </ListView.View>
         </ListView>
         <Calendar DataContext="{Binding SelectedProject}"
-            Grid.Row="3"
+                  Grid.Row="3"
                   DisplayDate="{Binding StartDate}"
-                  SelectedDate="{Binding StartDate}"/>
+                  SelectedDate="{Binding StartDate}" />
+
+        <StackPanel Grid.Column="1"
+                    Grid.RowSpan="3"
+                    Margin="10">
+            <ContentControl Content="{Binding SelectedProject}"
+                            ContentTemplate="{StaticResource ProjectDetails}" />
+
+            <StackPanel DataContext="{Binding SelectedProject}"
+                        Margin="10">
+                <StackPanel Orientation="Horizontal"
+                            Margin="20">
+                    <TextBlock  Text="Project Name: " />
+                    <TextBox Style="{StaticResource ErrorValidation}"
+                             Width="100"
+                             Text="{Binding Name, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" />
+                </StackPanel>
+                <StackPanel Orientation="Horizontal"
+                            Margin="20">
+                    <TextBlock Text="Project Type: " />
+
+                    <ComboBox Name="TypeSelector"
+                              ItemsSource="{Binding ProjectTypes}"
+                              SelectedValue="{Binding Type, Mode=TwoWay}"
+                              SelectedValuePath="ProjectTypeName"
+                              DisplayMemberPath="ProjectTypeName"
+                              MinWidth="60">
+                    </ComboBox>
+                    <TextBox Name="add_new_option"
+                             MinWidth="80"
+                             Style="{StaticResource ErrorValidation}"
+                             Text="{Binding Type, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" />
+                    <Button Content="Add Type"
+                            Name="add_new_option_button"
+                            Click="addNewType_handler" />
+                </StackPanel>
+                <StackPanel Orientation="Horizontal"
+                            Margin="20">
+                    <TextBlock Text="Start Date: " />
+                    <DatePicker x:Name="project_start_date"
+                                Style="{StaticResource DateErrorValidation}"
+                                SelectedDate="{Binding StartDate, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" />
+                </StackPanel>
+                <StackPanel Orientation="Horizontal"
+                            Margin="20">
+                    <TextBlock Text="Expected End Date: " />
+                    <DatePicker x:Name="project_end_date"
+                                SelectedDate="{Binding EstimatedEndDate, StringFormat={}{MMMM dd\, yyyy 0:HH:mm}}" />
+                </StackPanel>
+                <StackPanel Orientation="Horizontal"
+                            Margin="20">
+                    <TextBlock Text="Time Spent: " />
+                    <TextBlock Text="{Binding Time, StringFormat={}{0:hh:mm}, Converter={StaticResource stringConverter}, FallbackValue='00:00'}" />
+                </StackPanel>
+            </StackPanel>
+        </StackPanel>
     </Grid>
 </Window>

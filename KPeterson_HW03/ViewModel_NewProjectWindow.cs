@@ -1,41 +1,36 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Markup;
 
 namespace KPeterson_HW03
 {
-   public class ProjectButton : INotifyPropertyChanged
+    class ViewModel_NewProjectWindow: INotifyPropertyChanged//, IDataErrorInfo
     {
-        public ProjectButton()
-        {
-            btnHeight = 80;
-        } 
-               
-        private double btnHeight;
-        public double BtnHeight
-        {
-            get { return btnHeight; }
-            set { SetField(ref btnHeight, value); }
-        }
-
-        private string name;
-        public string Name
-        {
-            get { return name; }
-            set { SetField(ref name, value);
-                if (name.Equals(null))
-                {
-
-                }
-            }
-        }
-
         
 
+        //public string Error => throw new NotImplementedException();
+
+        //public string this[string propertyName]
+        //{
+        //    get
+        //    {
+        //        if (propertyName == nameof(Projects.Name))
+        //        {
+        //            if (Projects.Name.Equals(null))
+        //            {
+        //                return "The project must have a name.";
+        //            }
+        //        }
+        //        return null;
+
+        //    }
+        //}
         #region INotifyPropertyChanged Implementation
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
@@ -53,4 +48,5 @@ namespace KPeterson_HW03
         }
         #endregion
     }
+
 }

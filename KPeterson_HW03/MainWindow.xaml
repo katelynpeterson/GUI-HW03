@@ -13,7 +13,7 @@
     <Window.DataContext>
         <vm:ProjectButton />
     </Window.DataContext>
-    <Window.Resources>
+        <Window.Resources>
             <ResourceDictionary>
         <ControlTemplate x:Key="IconButtonTemplate"
                                  TargetType="{x:Type Button}">
@@ -40,6 +40,7 @@
                 </Grid>
             </ControlTemplate>
         </ResourceDictionary>
+        
     </Window.Resources>
     <!--Whole Window-->
     <Grid>
