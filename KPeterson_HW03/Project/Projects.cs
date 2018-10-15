@@ -114,14 +114,14 @@ namespace KPeterson_HW03
             {
                 if (propertyName == nameof(Name))
                 {
-                    if (Name.Equals("") || Name.Equals(null))
+                    if (String.IsNullOrEmpty(Name))
                     {
                         return errors[nameof(Name)] = "The project must have a name.";
                     }
                 }
                 if (propertyName == nameof(Type))
                 {
-                    if (Type.Equals("") || Type.Equals(null))
+                    if (String.IsNullOrEmpty(Type))
                     {
                         return errors[nameof(Type)] = "You cannot add an empty type.";
                     }
