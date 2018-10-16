@@ -9,6 +9,7 @@
         Height="700"
         Width="1000">
     <Window.Resources>
+        <BooleanToVisibilityConverter x:Key="BoolToVis" />
         <Style x:Key="ErrorValidation"
                TargetType="TextBox">
             <Style.Triggers>
@@ -142,7 +143,16 @@
                     <TextBox Style="{StaticResource ErrorValidation}"
                              Width="100"
                              Text="{Binding Name, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" />
+                    <CheckBox Content="My Favorite Project"
+                              Margin="5"
+                              IsChecked="{Binding FavoriteProject, UpdateSourceTrigger=PropertyChanged}" />
+                    <TextBlock Text="YAY!"
+                               Visibility="{Binding FavoriteProject, Converter={StaticResource BoolToVis}, UpdateSourceTrigger=PropertyChanged}"
+                               FontSize="14pt"
+                               Foreground="Red"
+                               FontWeight="Bold" />
                 </StackPanel>
+                
                 <StackPanel Orientation="Horizontal"
                             Margin="20">
                     <TextBlock Text="Project Type: " />

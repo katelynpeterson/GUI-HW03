@@ -15,13 +15,13 @@ namespace KPeterson_HW03_Tests
             Assert.AreEqual(project[nameof(project.Name)], "The project must have a name.");
         }
 
-        [TestMethod]
-        public void ProjectMustHaveStartDate()
-        {
-            var project = new Projects();
-            //project.StartDate = "";
-            Assert.AreEqual(project[nameof(project.StartDate)], "Project must have a start date.");
-        }
+        //[TestMethod]
+        //public void ProjectMustHaveStartDate()
+        //{
+        //    var project = new Projects();
+        //    project.StartDate = null;
+        //    Assert.AreEqual(project[nameof(project.StartDate)], "Project must have a start date.");
+        //}
 
         [TestMethod]
         public void ProjectCannotAddEmptyType()

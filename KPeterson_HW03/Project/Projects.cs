@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Runtime.CompilerServices;
 
 namespace KPeterson_HW03
 {
@@ -49,7 +50,7 @@ namespace KPeterson_HW03
 
         private void validateProjectDate()
         {
-            if (StartDate.Equals("") || StartDate.Equals(null))
+            if (StartDate == null || StartDate.Equals(""))
             {
                 errors[nameof(StartDate)] = "Project must have a start date.";
             }
@@ -74,6 +75,18 @@ namespace KPeterson_HW03
                 OnPropertyChanged("Name");
             }
         }
+
+        private bool favoriteProject;
+        public bool FavoriteProject
+        {
+            get { return favoriteProject; }
+            set {
+                SetField(ref favoriteProject, value);
+                OnPropertyChanged("FavoriteProject");
+            }
+        }
+
+
 
         private TimeSpan _time;
         public TimeSpan Time
@@ -132,21 +145,21 @@ namespace KPeterson_HW03
             }
         }
 
-        #region INotifyPropertyChanged Members 
-
-
+        #region INotifyPropertyChanged Implementation
         public event PropertyChangedEventHandler PropertyChanged;
-
-
-        public void OnPropertyChanged(string name)
+        protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
-            if (PropertyChanged != null)
-            {
-                PropertyChanged(this, new PropertyChangedEventArgs(name));
-            }
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-
+        protected bool SetField<T>(ref T field, T value, [CallerMemberName] string propertyName = null)
+        {
+            if (EqualityComparer<T>.Default.Equals(field, value))
+                return false;
+            field = value;
+            OnPropertyChanged(propertyName);
+            return true;
+        }
         #endregion
     }
 
@@ -188,21 +201,21 @@ namespace KPeterson_HW03
                OnPropertyChanged("Skill");
             }
         }
-        #region INotifyPropertyChanged Members 
-
-
+        #region INotifyPropertyChanged Implementation
         public event PropertyChangedEventHandler PropertyChanged;
-
-
-        public void OnPropertyChanged(string name)
+        protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
-            if (PropertyChanged != null)
-            {
-                PropertyChanged(this, new PropertyChangedEventArgs(name));
-            }
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-
+        protected bool SetField<T>(ref T field, T value, [CallerMemberName] string propertyName = null)
+        {
+            if (EqualityComparer<T>.Default.Equals(field, value))
+                return false;
+            field = value;
+            OnPropertyChanged(propertyName);
+            return true;
+        }
         #endregion
 
     }
