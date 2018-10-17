@@ -60,7 +60,171 @@ namespace KPeterson_HW03
             set { SetField(ref selectedProject, value); }
         }
 
-        
+        Stopwatch stopwatch = new Stopwatch();
+        TimeSpan ts = new TimeSpan();
+        string elapsedTime = "";
+        DateTime today = DateTime.Today;
+
+
+        List<String> list = new List<string>();
+
+        public MainWindow()
+        {
+            InitializeComponent();
+        }
+
+        //Timing buttons
+        private void start_time(object sender, RoutedEventArgs e)
+        {
+            if (!stopwatch.IsRunning)
+            {
+                current_time.Text = "Start";
+                stopwatch.Start();
+            }
+        }
+
+        private void print_time()
+        {
+            ts = stopwatch.Elapsed;
+            elapsedTime = String.Format("{0:00}:{1:00}:{2:00}",
+                ts.Hours, ts.Minutes, ts.Seconds);
+            current_time.Text = elapsedTime;
+
+        }
+
+        private void stop_time(object sender, RoutedEventArgs e)
+        {
+            stopwatch.Stop();
+            current_time.Text = "Stop";
+        }
+
+        private void submit_time(object sender, RoutedEventArgs e)
+        {
+            if (stopwatch.Elapsed != null)
+            {
+                ts = stopwatch.Elapsed;
+
+                elapsedTime = String.Format("{0:00}:{1:00}:{2:00}",
+                ts.Hours, ts.Minutes, ts.Seconds);
+
+                list.Add(today.ToString("MM/dd/yyyy") + " " + elapsedTime);
+
+                stopwatch.Reset();
+                current_time.Text = String.Format("{0:00}:{1:00}:{2:00}", 0, 0, 0);
+            }
+        }
+
+        public string TimeSpent()
+        {
+            return elapsedTime;
+        }
+
+        //Project Buttons
+        private void add_new_project(object sender, RoutedEventArgs e)
+        {
+            var newProject = new NewProjectWindow();
+            newProject.Show();
+        }
+
+
+        //Display current project name as title
+        private void btn01_click(object sender, RoutedEventArgs e)
+        {
+            current_project.Text = Project01.Text;
+            ProjectWindow project = new ProjectWindow();
+            project.Show();
+        }
+
+        private void btn02_click(object sender, RoutedEventArgs e)
+        {
+            current_project.Text = Project02.Text;
+            ProjectWindow project = new ProjectWindow();
+            project.Show();
+        }
+
+        private void btn03_click(object sender, RoutedEventArgs e)
+        {
+            current_project.Text = Project03.Text;
+            ProjectWindow project = new ProjectWindow();
+            project.Show();
+        }
+
+        private void btn04_click(object sender, RoutedEventArgs e)
+        {
+            current_project.Text = Project04.Text;
+            ProjectWindow project = new ProjectWindow();
+            project.Show();
+        }
+
+        private void btn05_click(object sender, RoutedEventArgs e)
+        {
+            current_project.Text = Project05.Text;
+            ProjectWindow project = new ProjectWindow();
+            project.Show();
+        }
+
+        //Control start and stop with spacebar, Ctrl+N adds new project
+
+        protected override void OnKeyDown(KeyEventArgs e)
+        {
+            //Add a new project button
+            if (e.KeyboardDevice.Modifiers == ModifierKeys.Control && (e.Key == Key.N || e.SystemKey == Key.N))
+            {
+
+            }
+
+            //Start the stopwatch if not already running
+            if ((e.Key == Key.Space || e.SystemKey == Key.Space) && !stopwatch.IsRunning)
+            {
+                current_time.Text = "Start";
+                stopwatch.Start();
+            }
+            else if (stopwatch.IsRunning)
+            {
+                stopwatch.Stop();
+                current_time.Text = "Stop";
+            }
+            base.OnKeyDown(e);
+        }
+
+        private ProjectButton projectBtn;
+
+        public ProjectButton ProjectBtn
+        {
+            get { return projectBtn; }
+            set { projectBtn = value; }
+        }
+
+        private double maxRange;
+        public double MaxRange
+        {
+            get { return maxRange; }
+            set { SetField(ref maxRange, value); }
+        }
+
+        private double minRange;
+        public double MinRange
+        {
+            get { return minRange; }
+            set { SetField(ref minRange, value); }
+        }
+
+        public BindingList<ProjectButton> MyProjects { get; set; }
+
+        public void projectbuttoninitializer()
+        {
+            maxRange = 300;
+            minRange = 80;
+
+            MyProjects = new BindingList<ProjectButton>(new[]
+            {
+            new ProjectButton {BtnHeight = 80, Name = "Project NANO"},
+            new ProjectButton {BtnHeight = 80, Name = "Project Cheese"},
+            new ProjectButton {BtnHeight = 80, Name = "Project Awesome"},
+            new ProjectButton {BtnHeight = 80, Name = "Project GUI"},
+            new ProjectButton {BtnHeight = 80, Name = "Project Cool"},
+            }.ToList());
+        }
 
         #region INotifyPropertyChanged Implementation
         public event PropertyChangedEventHandler PropertyChanged;

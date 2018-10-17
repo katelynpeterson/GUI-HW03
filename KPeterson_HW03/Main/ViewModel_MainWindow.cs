@@ -10,43 +10,9 @@ namespace KPeterson_HW03
 {
     public class ViewModel_MainWindow :INotifyPropertyChanged
     {
-        private ProjectButton projectBtn;
-
-        public ProjectButton ProjectBtn
-        {
-            get { return projectBtn; }
-            set { projectBtn = value; }
-        }
-
-        private double maxRange;
-        public double MaxRange
-        {
-            get { return maxRange; }
-            set { SetField(ref maxRange, value); }
-        }
-
-        private double minRange;
-        public double MinRange
-        {
-            get { return minRange; }
-            set { SetField(ref minRange, value); }
-        }
-
-        public BindingList<ProjectButton> MyProjects { get; set; }
-
         public ViewModel_MainWindow()
         {
-            maxRange = 300;
-            minRange = 80;
 
-            MyProjects = new BindingList<ProjectButton>(new[] 
-            { 
-            new ProjectButton {BtnHeight = 80, Name = "Project NANO"},
-            new ProjectButton {BtnHeight = 80, Name = "Project Cheese"},
-            new ProjectButton {BtnHeight = 80, Name = "Project Awesome"},
-            new ProjectButton {BtnHeight = 80, Name = "Project GUI"},
-            new ProjectButton {BtnHeight = 80, Name = "Project Cool"},
-            }.ToList());
         }
         #region INotifyPropertyChanged Implementation
         public event PropertyChangedEventHandler PropertyChanged;

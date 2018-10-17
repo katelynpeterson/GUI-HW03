@@ -192,5 +192,176 @@
                 </StackPanel>
             </StackPanel>
         </StackPanel>
+        <ScrollViewer x:Name="ScrollViewer"
+                      VerticalScrollBarVisibility="Auto">
+
+            <WrapPanel Grid.Column="0"
+                       Grid.Row="1"
+                       Grid.ColumnSpan="3"
+                       Name="wrap_panel">
+
+                <Button Background="MediumSpringGreen"
+                        Height="{Binding BtnHeight}"
+                        Width="{Binding BtnHeight}"
+                        Margin="10"
+                        Padding="auto"
+                        BorderThickness="0"
+                        Name="btn01"
+                        Click="btn01_click"
+                        Template="{DynamicResource ProjectButtonTemplate}">
+                    <TextBox Name="Project01"
+                             Background="MediumSpringGreen"
+                             BorderThickness="0"
+                             TextWrapping="Wrap"
+                             TextAlignment="Center"
+                             Text="Project NANO" />
+
+                </Button>
+
+                <Button Background="DodgerBlue"
+                        Height="{Binding BtnHeight}"
+                        Width="{Binding BtnHeight}"
+                        Margin="10"
+                        Padding="auto"
+                        BorderThickness="0"
+                        Name="btn02"
+                        Click="btn02_click"
+                        Template="{DynamicResource ProjectButtonTemplate}">
+                    <TextBox Name="Project02"
+                             Background="DodgerBlue"
+                             BorderThickness="0"
+                             TextWrapping="Wrap"
+                             TextAlignment="Center">Project Awesome
+                    </TextBox>
+                </Button>
+
+                <Button Background="LightSeaGreen"
+                        Height="{Binding BtnHeight}"
+                        Width="{Binding BtnHeight}"
+                        Margin="10"
+                        Padding="auto"
+                        BorderThickness="0"
+                        Name="btn03"
+                        Click="btn03_click"
+                        Template="{DynamicResource ProjectButtonTemplate}">
+                    <TextBox Name="Project03"
+                             Background="LightSeaGreen"
+                             BorderThickness="0"
+                             TextWrapping="Wrap"
+                             TextAlignment="Center">Project GUI
+                    </TextBox>
+                </Button>
+
+                <Button Background="Orange"
+                        Height="{Binding BtnHeight}"
+                        Width="{Binding BtnHeight}"
+                        Margin="10"
+                        Padding="auto"
+                        BorderThickness="0"
+                        Name="btn04"
+                        Click="btn04_click"
+                        Template="{DynamicResource ProjectButtonTemplate}">
+                    <TextBox Name="Project04"
+                             Background="Orange"
+                             BorderThickness="0"
+                             TextWrapping="Wrap"
+                             TextAlignment="Center">Project Cheese
+                    </TextBox>
+                </Button>
+
+                <Button Background="Coral"
+                        Height="{Binding BtnHeight}"
+                        Width="{Binding BtnHeight}"
+                        Margin="10"
+                        Padding="auto"
+                        BorderThickness="0"
+                        Name="btn05"
+                        Click="btn05_click"
+                        Template="{DynamicResource ProjectButtonTemplate}">
+                    <TextBox Name="Project05"
+                             Background="Coral"
+                             BorderThickness="0"
+                             TextWrapping="Wrap"
+                             TextAlignment="Center">Project Cool
+                    </TextBox>
+                </Button>
+
+            </WrapPanel>
+        </ScrollViewer>
+        <!--Play, Stop, & Pause Buttons-->
+        <Grid Grid.Column="1"
+              Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+
+            <Button Padding="auto"
+                    Margin="5"
+                    Background="White"
+                    BorderThickness="0"
+                    Click="start_time"
+                    Height="30"
+                    Width="30"
+                    Template="{DynamicResource IconButtonTemplate}">
+                <Image Width="auto"
+                       Height="auto"
+                       Source="/btn_resources/play.png"
+                       Name="Start_btn"
+                       ToolTip="Start" />
+            </Button>
+
+            <Button Grid.Column="1"
+                    Padding="auto"
+                    Margin="5"
+                    Background="white"
+                    BorderThickness="0"
+                    Click="stop_time"
+                    Height="30"
+                    Width="30"
+                    Template="{DynamicResource IconButtonTemplate}">
+                <Image Width="auto"
+                       Height="auto"
+                       Source="/btn_resources/stop.png"
+                       Name="Stop_btn"
+                       ToolTip="Stop" />
+            </Button>
+
+            <Button Name="submit_btn"
+                    Grid.Row="1"
+                    Grid.ColumnSpan="2"
+                    Padding="auto"
+                    Margin="5"
+                    Background="white"
+                    BorderThickness="0"
+                    FontSize="25"
+                    FontWeight="Bold"
+                    Click="submit_time">Submit Time
+                <Button.Template>
+                    <ControlTemplate TargetType="Button">
+                        <Grid>
+                            <Rectangle Fill="{TemplateBinding Background}"
+                                       Height="50"
+                                       Width="200" />
+                            <Path />
+                            <ContentPresenter HorizontalAlignment="Center"
+                                              VerticalAlignment="Center" />
+                        </Grid>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+
+        </Grid>
+
+        <!--Time Viewer-->
+        <WrapPanel Grid.Column="2"
+                   Grid.Row="2">
+            <TextBlock Name="current_time" />
+        </WrapPanel>
+
     </Grid>
 </Window>

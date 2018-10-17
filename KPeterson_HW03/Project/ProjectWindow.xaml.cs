@@ -53,22 +53,6 @@ namespace KPeterson_HW03
                 add_new_option.Clear();
             }
         }
-        
-
-        //private void ProjectTypesArray()
-        //{
-
-        //    box.Name = "TypeSelector";
-        //    box.Width = 50;
-        //    box.Items.Add("Client");
-        //    box.Items.Add("Personal");
-        //    box.Items.Add("School");
-        //    //RootLayout.Children.Add(box);
-        //}
-
-        //public void AddNewProjectType(string newItem)
-        //{
-        //    box.Items.Add(newItem);
-        //}
+       
     }
 }
