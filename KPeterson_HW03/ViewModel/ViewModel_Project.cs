@@ -124,13 +124,6 @@ namespace KPeterson_HW03
             return elapsedTime;
         }
 
-        //Project Buttons
-        private void add_new_project(object sender, RoutedEventArgs e)
-        {
-            var newProject = new NewProjectWindow();
-            newProject.Show();
-        }
-        
         //Control start and stop with spacebar, Ctrl+N adds new project
 
         internal void OnKeyDown(KeyEventArgs e)

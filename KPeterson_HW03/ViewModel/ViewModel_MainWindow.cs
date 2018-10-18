@@ -40,6 +40,22 @@ namespace KPeterson_HW03
                 SelectedChildViewModel = ChildViewModels.Last();
             }));
 
+        private RelayCommand treeView;
+        public RelayCommand TreeView => projectSummary ?? (treeView = new RelayCommand(
+            () =>
+            {
+                ChildViewModels.Add(new ChildControl("Tree View", new ViewModel_Project()));
+                SelectedChildViewModel = ChildViewModels.Last();
+            }));
+
+        private RelayCommand projectSummary;
+        public RelayCommand ProjectSummary => projectSummary ?? (projectSummary = new RelayCommand(
+            () =>
+            {
+                ChildViewModels.Add(new ChildControl("Project Summary", new ViewModel_Project()));
+                SelectedChildViewModel = ChildViewModels.Last();
+            }));
+
 
         #region INotifyPropertyChanged Implementation
         public event PropertyChangedEventHandler PropertyChanged;

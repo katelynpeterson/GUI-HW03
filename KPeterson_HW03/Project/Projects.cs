@@ -17,6 +17,9 @@ namespace KPeterson_HW03
         private ObservableCollection<Info> _info
             = new ObservableCollection<Info>();
 
+        private ObservableCollection<Projects> children;
+        public ObservableCollection<Projects> Children => children ?? (children = new ObservableCollection<Projects>());
+
         public int ID
         {
             get { return _id; }
@@ -86,8 +89,6 @@ namespace KPeterson_HW03
             }
         }
 
-
-
         private TimeSpan _time;
         public TimeSpan Time
         {
@@ -98,8 +99,7 @@ namespace KPeterson_HW03
                 OnPropertyChanged("Time");
             }
         }
-
-
+        
         public ObservableCollection<Info> Info
         {
             get { return _info; }
