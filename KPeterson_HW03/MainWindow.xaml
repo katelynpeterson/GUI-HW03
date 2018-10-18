@@ -23,19 +23,19 @@
                                   SmallImageSource="/btn_resources/add.png"
                                   ToolTipTitle="Add New Project"
                                   ToolTipDescription="Create a new project to keep track of the time you spend and the skills you develop on it."
-                                  Command="{Binding }" />
+                                  Command="{Binding AddNewProject}" />
                     <RibbonButton Label="Tree View"
                                   LargeImageSource="/btn_resources/tree.png"
                                   SmallImageSource="/btn_resources/tree.png"
                                   ToolTipTitle="Tree View"
                                   ToolTipDescription="View the tree structure of your projects."
-                                  Command="{Binding }" />
+                                  Command="{Binding TreeView}" />
                     <RibbonButton Label="Summary"
                                   LargeImageSource="/btn_resources/summary.png"
                                   SmallImageSource="/btn_resources/summary.png"
                                   ToolTipTitle="Summary of Projects"
                                   ToolTipDescription="View the details of all your projects in one place."
-                                  Command="{Binding }" />
+                                  Command="{Binding ProjectSummary}" />
                 </RibbonGroup>
             </RibbonTab>
         </Ribbon>
