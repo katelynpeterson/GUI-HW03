@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using KPeterson_HW03.ViewModel;
 
 namespace KPeterson_HW03
 {

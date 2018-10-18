@@ -8,7 +8,7 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace KPeterson_HW03
+namespace KPeterson_HW03.ViewModel
 {
     public class ViewModel_MainWindow : INotifyPropertyChanged
     {

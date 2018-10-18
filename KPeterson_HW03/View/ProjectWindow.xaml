@@ -3,18 +3,16 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:KPeterson_HW03"
+        xmlns:local="clr-namespace:KPeterson_HW03.ViewModel"
         mc:Ignorable="d"
         Height="700"
-        Width="1000"
-        KeyDown="OnKeyDown">
+        Width="1000">
     <UserControl.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="/Styles.xaml" />
                 <ResourceDictionary>
                     <BooleanToVisibilityConverter x:Key="BoolToVis" />
-                    <local:GlobalStringFormatConverter x:Key="stringConverter" />
 
                     <DataTemplate x:Key="ProjectDetails">
 
@@ -30,11 +28,6 @@
         </ResourceDictionary>
         
     </UserControl.Resources>
-    <UserControl.CommandBindings>
-        <CommandBinding Command="Close"
-                        CanExecute="CloseCommand_CanExecute"
-                        Executed="CloseCommand_Executed" />
-    </UserControl.CommandBindings>
     <UserControl.DataContext>
         <local:ViewModel_Project />
     </UserControl.DataContext>
@@ -65,7 +58,6 @@
                                 Padding="auto"
                                 BorderThickness="0"
                                 Name="btn01"
-                                Click="btn01_click"
                                 Template="{DynamicResource ProjectButtonTemplate}">
                             <TextBox Name="Project01"
                                      Background="MediumSpringGreen"
@@ -83,7 +75,6 @@
                                 Padding="auto"
                                 BorderThickness="0"
                                 Name="btn02"
-                                Click="btn02_click"
                                 Template="{DynamicResource ProjectButtonTemplate}">
                             <TextBox Name="Project02"
                                      Background="DodgerBlue"
@@ -100,7 +91,6 @@
                                 Padding="auto"
                                 BorderThickness="0"
                                 Name="btn03"
-                                Click="btn03_click"
                                 Template="{DynamicResource ProjectButtonTemplate}">
                             <TextBox Name="Project03"
                                      Background="LightSeaGreen"
@@ -117,7 +107,6 @@
                                 Padding="auto"
                                 BorderThickness="0"
                                 Name="btn04"
-                                Click="btn04_click"
                                 Template="{DynamicResource ProjectButtonTemplate}">
                             <TextBox Name="Project04"
                                      Background="Orange"
@@ -134,7 +123,6 @@
                                 Padding="auto"
                                 BorderThickness="0"
                                 Name="btn05"
-                                Click="btn05_click"
                                 Template="{DynamicResource ProjectButtonTemplate}">
                             <TextBox Name="Project05"
                                      Background="Coral"

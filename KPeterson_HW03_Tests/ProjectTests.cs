@@ -1,5 +1,6 @@
 ﻿using System;
 using KPeterson_HW03;
+using KPeterson_HW03.ViewModel;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace KPeterson_HW03_Tests

@@ -1,7 +1,7 @@
 /*
   In App.xaml:
   <Application.Resources>
-      <vm:ViewModelLocator xmlns:vm="clr-namespace:KPeterson_HW03"
+      <vm:ViewModelLocator xmlns:vm="clr-namespace:KPeterson_HW03_Tests"
                            x:Key="Locator" />
   </Application.Resources>
   
@@ -12,11 +12,11 @@
   See http://www.galasoft.ch/mvvm
 */
 
-using CommonServiceLocator;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Ioc;
+using Microsoft.Practices.ServiceLocation;
 
-namespace KPeterson_HW03.ViewModel
+namespace KPeterson_HW03_Tests.ViewModel
 {
     /// <summary>
     /// This class contains static references to all the view models in the
@@ -42,14 +42,14 @@ namespace KPeterson_HW03.ViewModel
             ////    SimpleIoc.Default.Register<IDataService, DataService>();
             ////}
 
-            SimpleIoc.Default.Register<ViewModel_MainWindow>();
+            SimpleIoc.Default.Register<MainViewModel>();
         }
 
-        public ViewModel_MainWindow Main
+        public MainViewModel Main
         {
             get
             {
-                return ServiceLocator.Current.GetInstance<ViewModel_MainWindow>();
+                return ServiceLocator.Current.GetInstance<MainViewModel>();
             }
         }
         

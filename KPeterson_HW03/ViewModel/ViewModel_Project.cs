@@ -8,7 +8,7 @@ using System.Runtime.CompilerServices;
 using System.Windows;
 using System.Windows.Input;
 
-namespace KPeterson_HW03
+namespace KPeterson_HW03.ViewModel
 {
     public class ViewModel_Project : INotifyPropertyChanged
     { 
@@ -122,29 +122,6 @@ namespace KPeterson_HW03
         public string TimeSpent()
         {
             return elapsedTime;
-        }
-
-        //Control start and stop with spacebar, Ctrl+N adds new project
-
-        internal void OnKeyDown(KeyEventArgs e)
-        {
-            //Add a new project button
-            if (e.KeyboardDevice.Modifiers == ModifierKeys.Control && (e.Key == Key.N || e.SystemKey == Key.N))
-            {
-
-            }
-
-            //Start the stopwatch if not already running
-            if ((e.Key == Key.Space || e.SystemKey == Key.Space) && !stopwatch.IsRunning)
-            {
-                CurrentTime = "Start";
-                stopwatch.Start();
-            }
-            else if (stopwatch.IsRunning)
-            {
-                stopwatch.Stop();
-                CurrentTime = "Stop";
-            }
         }
 
         private ProjectButton projectBtn;

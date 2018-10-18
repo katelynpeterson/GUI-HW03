@@ -72,13 +72,7 @@
     </ApplicationDefinition>
     <Compile Include="ChildControl.cs" />
     <Compile Include="GlobalStringFormatConverter.cs" />
-    <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
-    <Compile Include="ViewModel\ViewModel_NewProjectWindow.cs" />
-    <Page Include="Calendar.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -87,24 +81,14 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Calendar.xaml.cs">
-      <DependentUpon>Calendar.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Main\ProjectButton.cs" />
+    <Compile Include="ProjectButton.cs" />
     <Compile Include="ViewModel\ViewModel_MainWindow.cs" />
-    <Compile Include="NewProjectWindow.xaml.cs">
-      <DependentUpon>NewProjectWindow.xaml</DependentUpon>
-    </Compile>
     <Compile Include="ViewModel\ViewModel_Project.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="NewProjectWindow.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Project\ProjectWindow.xaml">
+    <Page Include="View\ProjectWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -118,8 +102,8 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Project\Projects.cs" />
-    <Compile Include="Project\ProjectWindow.xaml.cs">
+    <Compile Include="Projects.cs" />
+    <Compile Include="View\ProjectWindow.xaml.cs">
       <DependentUpon>ProjectWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -173,6 +157,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="btn_resources\tree.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

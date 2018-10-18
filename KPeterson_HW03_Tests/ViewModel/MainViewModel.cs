@@ -1,6 +1,6 @@
 using GalaSoft.MvvmLight;
 
-namespace KPeterson_HW03.ViewModel
+namespace KPeterson_HW03_Tests.ViewModel
 {
     /// <summary>
     /// This class contains properties that the main View can data bind to.
