@@ -12,7 +12,8 @@
     </UserControl.DataContext>
     <DockPanel>
         <TextBlock DockPanel.Dock="Top" HorizontalAlignment="Center" FontSize="30" Margin="10" Text="Summary of My Projects" />
-        <DataGrid ItemsSource="{Binding Path=ProjectList}">
+        <DataGrid ItemsSource="{Binding Path=ProjectList}"
+                  AutoGenerateColumns="False">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Name"
                                     Binding="{Binding Name}" />

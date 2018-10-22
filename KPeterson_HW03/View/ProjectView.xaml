@@ -30,14 +30,15 @@
         </ResourceDictionary>
 
     </UserControl.Resources>
-    <Grid>
+    <ScrollViewer x:Name="ScrollViewer"
+                  VerticalScrollBarVisibility="Auto">
+        <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="auto" />
             <ColumnDefinition Width="auto"/>
         </Grid.ColumnDefinitions>
 
         <Grid.RowDefinitions>
-            <RowDefinition Height="auto" />
             <RowDefinition Height="auto" />
             <RowDefinition Height="auto" />
         </Grid.RowDefinitions>
@@ -68,58 +69,61 @@
             </ListView>
         </Expander>
 
-        <StackPanel Grid.Row="2">
-            <ContentControl Content="{Binding SelectedProject}"
-                            ContentTemplate="{StaticResource ProjectDetails}" />
+        
+            <StackPanel Grid.Row="1">
+                <ContentControl Content="{Binding SelectedProject}"
+                                ContentTemplate="{StaticResource ProjectDetails}" />
 
-            <StackPanel DataContext="{Binding SelectedProject}"
-                        Margin="10">
-                <StackPanel Orientation="Horizontal"
-                            Margin="20">
-                    <TextBlock  Text="Project Name: " />
-                    <TextBox Style="{StaticResource ErrorValidation}"
-                             Width="100"
-                             Text="{Binding Name, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" />
-                    
-                    <CheckBox Content="My Favorite Project"
-                              Margin="5"
-                              IsChecked="{Binding FavoriteProject, UpdateSourceTrigger=PropertyChanged}" />
-                    <TextBlock Text="YAY!"
-                               Visibility="{Binding FavoriteProject, Converter={StaticResource BoolToVis}, UpdateSourceTrigger=PropertyChanged}"
-                               FontSize="14pt"
-                               Foreground="Red"
-                               FontWeight="Bold" />
+                <StackPanel DataContext="{Binding SelectedProject}"
+                            Margin="10">
+                    <StackPanel Orientation="Horizontal"
+                                Margin="20">
+                        <TextBlock  Text="Project Name: " />
+                        <TextBox Style="{StaticResource ErrorValidation}"
+                                 Width="100"
+                                 Text="{Binding Name, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" />
+
+                        <CheckBox Content="My Favorite Project"
+                                  Margin="5"
+                                  IsChecked="{Binding FavoriteProject, UpdateSourceTrigger=PropertyChanged}" />
+                        <TextBlock Text="YAY!"
+                                   Visibility="{Binding FavoriteProject, Converter={StaticResource BoolToVis}, UpdateSourceTrigger=PropertyChanged}"
+                                   FontSize="14pt"
+                                   Foreground="Red"
+                                   FontWeight="Bold" />
+                    </StackPanel>
+
+
+
+                    <StackPanel Orientation="Horizontal"
+                                Margin="20">
+                        <TextBlock Text="Start Date: " />
+                        <DatePicker x:Name="project_start_date"
+                                    Style="{StaticResource DateErrorValidation}"
+                                    SelectedDate="{Binding StartDate, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal"
+                                Margin="20">
+                        <TextBlock Text="Expected End Date: " />
+                        <DatePicker x:Name="project_end_date"
+                                    SelectedDate="{Binding EstimatedEndDate, StringFormat={}{MMMM dd\, yyyy 0:HH:mm}}" />
+                    </StackPanel>
+
                 </StackPanel>
-
-
-
-                <StackPanel Orientation="Horizontal"
-                            Margin="20">
-                    <TextBlock Text="Start Date: " />
-                    <DatePicker x:Name="project_start_date"
-                                Style="{StaticResource DateErrorValidation}"
-                                SelectedDate="{Binding StartDate, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" />
-                </StackPanel>
-                <StackPanel Orientation="Horizontal"
-                            Margin="20">
-                    <TextBlock Text="Expected End Date: " />
-                    <DatePicker x:Name="project_end_date"
-                                SelectedDate="{Binding EstimatedEndDate, StringFormat={}{MMMM dd\, yyyy 0:HH:mm}}" />
-                </StackPanel>
-
             </StackPanel>
-        </StackPanel>
 
-        <!--Play, Stop, & Pause Buttons-->
-        <GroupBox Grid.Column="1"
-                  Grid.Row="2"
-                  Header="Timing">
-            <StackPanel>                
-                <!--Time Viewer-->                
-                    <TextBlock Text="{Binding CurrentTime,FallbackValue=00:00:00}" />
-               
-                <GroupBox >
-                    <Grid >
+            <!--Play, Stop, & Pause Buttons-->
+            <GroupBox Grid.Column="1"
+                      Grid.Row="2"
+                      Header="Timing"
+                      DataContext="{Binding SelectedProject}">
+                <StackPanel>
+                    <!--Time Viewer-->
+                    <TextBlock Text="{Binding Time, FallbackValue=00:00:00}"
+                               HorizontalAlignment="Center"
+                               Margin="10" />
+
+                    <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="auto" />
                             <ColumnDefinition Width="auto" />
@@ -153,7 +157,7 @@
                                    Name="Stop_btn"
                                    ToolTip="Stop" />
                         </Button>
-                        
+
                         <Button Name="submit_btn"
                                 Grid.Row="1"
                                 Grid.ColumnSpan="2"
@@ -175,9 +179,9 @@
                             </Button.Template>
                         </Button>
                     </Grid>
-                </GroupBox>
-            </StackPanel>
-        </GroupBox>
-
+                </StackPanel>
+            </GroupBox>
     </Grid>
+
+    </ScrollViewer>
 </UserControl>

@@ -6,8 +6,9 @@
              xmlns:local="clr-namespace:KPeterson_HW03.View"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
-        <TreeView ItemsSource="{Binding MyProjects}"
+    <StackPanel>
+        
+        <TreeView ItemsSource="{Binding ProjectList}"
                   >
             <TreeView.ItemTemplate>
                 <HierarchicalDataTemplate ItemsSource="{Binding Children}">
@@ -15,5 +16,5 @@
                 </HierarchicalDataTemplate>
             </TreeView.ItemTemplate>
         </TreeView>
-    </Grid>
+    </StackPanel>
 </UserControl>

@@ -14,30 +14,29 @@ namespace KPeterson_HW03.ViewModel
     public class ViewModel_Project : INotifyPropertyChanged
     { 
     
-        private ObservableCollection<Projects> _projectList;
         public ObservableCollection<Projects> ProjectList
         {
-            get { return _projectList; }
+            get; set;
         }
 
         public Projects NewProject { get; private set; }
 
         public ViewModel_Project()
         {
-           
-            _projectList = new ObservableCollection<Projects>();
+
+            ProjectList = new ObservableCollection<Projects>();
 
             NewProject = new Projects { ID = 1, StartDate = new DateTime(2018, 8, 3), Name = "Project Cool", Type = "Personal", Time = new TimeSpan(1, 24, 4), ProjectColor = RandColor() };
             NewProject.Info.Add(new Info { ID = 1, Date = new DateTime(2018, 1, 1), Skill = "UX" });
             NewProject.Info.Add(new Info { ID = 1, Date = new DateTime(2018, 2, 1), Skill = "DB" });
-            _projectList.Add(NewProject);
+            ProjectList.Add(NewProject);
 
 
             NewProject = new Projects { ID = 2, StartDate = new DateTime(2018, 8, 15), Name = "Project Awesome", Type = "Personal", Time = new TimeSpan(1, 56, 10), ProjectColor = RandColor() };
             NewProject.Info.Add(new Info {ID= 2, Date = new DateTime(2018, 10, 5), Skill = "JS" });
             NewProject.Info.Add(new Info{ ID = 3, Date = new DateTime(2018, 12, 11), Skill = "HTML" });
             NewProject.Info.Add(new Info{ ID = 4, Date = new DateTime(2018, 2, 11), Skill = "CSS" });
-            _projectList.Add(NewProject);
+            ProjectList.Add(NewProject);
 
             NewProject = new Projects { ID = 3, StartDate = new DateTime(2018, 9, 6), Name = "Project NANO", Type = "Client", Time = new TimeSpan(13, 2, 44), ProjectColor = RandColor() };
             NewProject.Info.Add(new Info { ID = 1, Date = new DateTime(2018, 7, 1), Skill = "HTML" });
@@ -45,14 +44,14 @@ namespace KPeterson_HW03.ViewModel
             NewProject.Info.Add(new Info { ID = 1, Date = new DateTime(2018, 9, 10), Skill = "JSON" });
             NewProject.Info.Add(new Info { ID = 1, Date = new DateTime(2018, 8, 10), Skill = "PHP" });
             NewProject.Info.Add(new Info { ID = 1, Date = new DateTime(2018, 9, 10), Skill = "CSS" });
-            _projectList.Add(NewProject);
+            ProjectList.Add(NewProject);
 
 
             NewProject = new Projects { ID = 4, StartDate = new DateTime(2018, 10, 1), Name = "Project Cheese", Type = "School", Time = new TimeSpan(0, 50, 41), ProjectColor = RandColor() };
             NewProject.Info.Add(new Info { ID = 1, Date = new DateTime(2018, 9, 4), Skill = "JS" });
             NewProject.Info.Add(new Info { ID = 3, Date = new DateTime(2018, 9, 28), Skill = "PHP" });
             NewProject.Info.Add(new Info { ID = 1, Date = new DateTime(2018, 9, 10), Skill = "CSS" });
-            _projectList.Add(NewProject);
+            ProjectList.Add(NewProject);
 
         }
 
@@ -66,7 +65,7 @@ namespace KPeterson_HW03.ViewModel
         public Color RandColor()
         {
             Random randomGen = new Random();
-            return Color.FromRgb((byte)randomGen.Next(255), (byte)randomGen.Next(255),
+            return Color.FromRgb( (byte)randomGen.Next(255), (byte)randomGen.Next(255),
            (byte)randomGen.Next(255));
         }
 
@@ -154,22 +153,22 @@ namespace KPeterson_HW03.ViewModel
             set { SetField(ref minRange, value); }
         }
 
-        public BindingList<ProjectButton> MyProjects { get; set; }
+        //public BindingList<ProjectButton> MyProjects { get; set; }
 
-        public void projectbuttoninitializer()
-        {
-            maxRange = 300;
-            minRange = 80;
+        //public void projectbuttoninitializer()
+        //{
+        //    maxRange = 300;
+        //    minRange = 80;
 
-            MyProjects = new BindingList<ProjectButton>(new[]
-            {
-            new ProjectButton {BtnHeight = 80, Name = "Project NANO"},
-            new ProjectButton {BtnHeight = 80, Name = "Project Cheese"},
-            new ProjectButton {BtnHeight = 80, Name = "Project Awesome"},
-            new ProjectButton {BtnHeight = 80, Name = "Project GUI"},
-            new ProjectButton {BtnHeight = 80, Name = "Project Cool"},
-            }.ToList());
-        }
+        //    MyProjects = new BindingList<ProjectButton>(new[]
+        //    {
+        //    new ProjectButton {BtnHeight = 80, Name = "Project NANO"},
+        //    new ProjectButton {BtnHeight = 80, Name = "Project Cheese"},
+        //    new ProjectButton {BtnHeight = 80, Name = "Project Awesome"},
+        //    new ProjectButton {BtnHeight = 80, Name = "Project GUI"},
+        //    new ProjectButton {BtnHeight = 80, Name = "Project Cool"},
+        //    }.ToList());
+        //}
 
         #region INotifyPropertyChanged Implementation
         public event PropertyChangedEventHandler PropertyChanged;

@@ -14,11 +14,11 @@ namespace KPeterson_HW03.ViewModel
     {
         public ViewModel_TreeView(ObservableCollection<Projects> myProject)
         {
-            MyProjects = myProject;
-            SelectedPerson = MyProjects?.FirstOrDefault();
+            ProjectList = myProject;
+            SelectedPerson = ProjectList?.FirstOrDefault();
         }
 
-        public ObservableCollection<Projects> MyProjects { get; }
+        public ObservableCollection<Projects> ProjectList { get; }
 
         private  Projects selectedProject;
         public Projects SelectedPerson

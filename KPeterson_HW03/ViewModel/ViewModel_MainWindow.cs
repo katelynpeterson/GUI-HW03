@@ -44,8 +44,8 @@ namespace KPeterson_HW03.ViewModel
         public RelayCommand TreeView => projectSummary ?? (treeView = new RelayCommand(
             () =>
             {
-                var mostRecentProjectTreeViewModel = (ViewModel_TreeView)(ChildViewModels.FirstOrDefault(v => v.ViewModel.GetType() == typeof(ViewModel_TreeView))?.ViewModel);
-                var myproject = mostRecentProjectTreeViewModel?.MyProjects ?? new ObservableCollection<Projects>(new[] { new Projects() { Name = "Default Project"} });
+                var mostRecentProjectTreeViewModel = (ViewModel_Project)(ChildViewModels.FirstOrDefault(v => v.ViewModel.GetType() == typeof(ViewModel_Project))?.ViewModel);
+                var myproject = mostRecentProjectTreeViewModel?.ProjectList ?? new ObservableCollection<Projects>(new[] { new Projects() { Name = "Default Project"}});
 
                 ChildViewModels.Add(new ChildControl("Tree View", new ViewModel_TreeView(new ObservableCollection<Projects>(myproject))));
                 SelectedChildViewModel = ChildViewModels.Last();

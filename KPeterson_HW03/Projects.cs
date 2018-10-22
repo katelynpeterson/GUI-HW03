@@ -22,6 +22,7 @@ namespace KPeterson_HW03
         private ObservableCollection<Projects> children;
         public ObservableCollection<Projects> Children => children ?? (children = new ObservableCollection<Projects>());
 
+
         public int ID
         {
             get { return _id; }
