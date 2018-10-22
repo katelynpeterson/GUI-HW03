@@ -56,7 +56,7 @@ namespace KPeterson_HW03
 
         private void validateProjectDate()
         {
-            if (StartDate == null || StartDate.Equals(""))
+            if (StartDate == default(DateTime))
             {
                 errors[nameof(StartDate)] = "Project must have a start date.";
             }

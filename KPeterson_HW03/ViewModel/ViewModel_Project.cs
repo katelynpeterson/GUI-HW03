@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GalaSoft.MvvmLight.Command;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
@@ -12,8 +13,9 @@ using System.Windows.Media;
 namespace KPeterson_HW03.ViewModel
 {
     public class ViewModel_Project : INotifyPropertyChanged
-    { 
-    
+    {
+        Projects myProject = new Projects();
+
         public ObservableCollection<Projects> ProjectList
         {
             get; set;
@@ -53,7 +55,19 @@ namespace KPeterson_HW03.ViewModel
             NewProject.Info.Add(new Info { ID = 1, Date = new DateTime(2018, 9, 10), Skill = "CSS" });
             ProjectList.Add(NewProject);
 
+            NewProject = new Projects { ID = 4, StartDate = new DateTime(2018, 10, 1), Name = "Demo", Type = "School", Time = new TimeSpan(0, 14, 9), ProjectColor = RandColor() };
+            NewProject.Info.Add(new Info { ID = 1, Date = new DateTime(2018, 9, 4), Skill = "JS" });
+            ProjectList.Add(NewProject);
+
+            NewProject = new Projects { ID = 4, StartDate = new DateTime(2018, 10, 1), Name = "Omega", Type = "School", Time = new TimeSpan(0, 5, 0), ProjectColor = RandColor() };
+            NewProject.Info.Add(new Info { ID = 1, Date = new DateTime(2018, 9, 4), Skill = "PHP" });
+            ProjectList.Add(NewProject);
+
+            AddProject = new AddProjectCommand(ProjectList);
+            SelectedProject = ProjectList.First();
         }
+
+        public ICommand AddProject { get; set; }
 
         private Projects selectedProject;
         public Projects SelectedProject
@@ -64,112 +78,54 @@ namespace KPeterson_HW03.ViewModel
 
         public Color RandColor()
         {
-            Random randomGen = new Random();
+
+            Random randomGen = new Random(Guid.NewGuid().GetHashCode());
             return Color.FromRgb( (byte)randomGen.Next(255), (byte)randomGen.Next(255),
            (byte)randomGen.Next(255));
         }
 
         Stopwatch stopwatch = new Stopwatch();
-        TimeSpan ts = new TimeSpan();
-        string elapsedTime = "";
-        DateTime today = DateTime.Today;
-
-        private string currentTime;
-        public string CurrentTime
-        {
-            get { return currentTime; }
-            set { SetField(ref currentTime, value); }
-        }
-
 
         List<String> list = new List<string>();
 
-      
+
         //Timing buttons
-        public void start_time(object sender, RoutedEventArgs e)
-        {
-            if (!stopwatch.IsRunning)
+        private RelayCommand start_time;
+        public RelayCommand StartTime => start_time ?? (start_time = new RelayCommand(
+            () =>
             {
-                CurrentTime = "Start";
-                stopwatch.Start();
-            }
-        }
+                if (!stopwatch.IsRunning)
+                {
+                    stopwatch.Start();
+                }
+            }));
+       
+        private RelayCommand stop_time;
+        public RelayCommand StopTime => stop_time ?? (stop_time = new RelayCommand(
+            () =>
+            {
+                stopwatch.Stop();
+                myProject.Time = stopwatch.Elapsed;
+            }));
+
+        private RelayCommand submit_time;
+        public RelayCommand SubmitTime => submit_time ?? (submit_time = new RelayCommand(
+            () =>
+            {
+                if (stopwatch.Elapsed != null)
+                {
+                    myProject.Time = stopwatch.Elapsed;
+                    
+                    stopwatch.Reset();
+                }
+            }));
+
 
         public void print_time()
         {
-            ts = stopwatch.Elapsed;
-            elapsedTime = String.Format("{0:00}:{1:00}:{2:00}",
-                ts.Hours, ts.Minutes, ts.Seconds);
-            CurrentTime = elapsedTime;
-
+            myProject.Time = stopwatch.Elapsed;
         }
-
-        public void stop_time(object sender, RoutedEventArgs e)
-        {
-            stopwatch.Stop();
-            CurrentTime = "Stop";
-        }
-
-        public void submit_time(object sender, RoutedEventArgs e)
-        {
-            if (stopwatch.Elapsed != null)
-            {
-                ts = stopwatch.Elapsed;
-
-                elapsedTime = String.Format("{0:00}:{1:00}:{2:00}",
-                ts.Hours, ts.Minutes, ts.Seconds);
-
-                list.Add(today.ToString("MM/dd/yyyy") + " " + elapsedTime);
-
-                stopwatch.Reset();
-                CurrentTime = String.Format("{0:00}:{1:00}:{2:00}", 0, 0, 0);
-            }
-        }
-
-        public string TimeSpent()
-        {
-            return elapsedTime;
-        }
-
-        private ProjectButton projectBtn;
-
-        public ProjectButton ProjectBtn
-        {
-            get { return projectBtn; }
-            set { projectBtn = value; }
-        }
-
-        private double maxRange;
-        public double MaxRange
-        {
-            get { return maxRange; }
-            set { SetField(ref maxRange, value); }
-        }
-
-        private double minRange;
-        public double MinRange
-        {
-            get { return minRange; }
-            set { SetField(ref minRange, value); }
-        }
-
-        //public BindingList<ProjectButton> MyProjects { get; set; }
-
-        //public void projectbuttoninitializer()
-        //{
-        //    maxRange = 300;
-        //    minRange = 80;
-
-        //    MyProjects = new BindingList<ProjectButton>(new[]
-        //    {
-        //    new ProjectButton {BtnHeight = 80, Name = "Project NANO"},
-        //    new ProjectButton {BtnHeight = 80, Name = "Project Cheese"},
-        //    new ProjectButton {BtnHeight = 80, Name = "Project Awesome"},
-        //    new ProjectButton {BtnHeight = 80, Name = "Project GUI"},
-        //    new ProjectButton {BtnHeight = 80, Name = "Project Cool"},
-        //    }.ToList());
-        //}
-
+        
         #region INotifyPropertyChanged Implementation
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged([CallerMemberName] string propertyName = null)

@@ -100,13 +100,13 @@
                         <TextBlock Text="Start Date: " />
                         <DatePicker x:Name="project_start_date"
                                     Style="{StaticResource DateErrorValidation}"
-                                    SelectedDate="{Binding StartDate, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" />
+                                    SelectedDate="{Binding StartDate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" />
                     </StackPanel>
                     <StackPanel Orientation="Horizontal"
                                 Margin="20">
                         <TextBlock Text="Expected End Date: " />
                         <DatePicker x:Name="project_end_date"
-                                    SelectedDate="{Binding EstimatedEndDate, StringFormat={}{MMMM dd\, yyyy 0:HH:mm}}" />
+                                    SelectedDate="{Binding EstimatedEndDate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" />
                     </StackPanel>
 
                 </StackPanel>
@@ -134,7 +134,7 @@
                         </Grid.RowDefinitions>
 
                         <Button Style="{StaticResource ButtonStyle}"
-                                Command="{Binding start_time}"
+                                Command="{Binding StartTime}"
                                 Height="30"
                                 Width="30"
                                 Template="{DynamicResource IconButtonTemplate}">
@@ -147,7 +147,7 @@
 
                         <Button Grid.Column="1"
                                 Style="{StaticResource ButtonStyle}"
-                                Command="{Binding stop_time}"
+                                Command="{Binding StopTime}"
                                 Height="30"
                                 Width="30"
                                 Template="{DynamicResource IconButtonTemplate}">
@@ -164,7 +164,7 @@
                                 Style="{StaticResource ButtonStyle}"
                                 FontSize="25"
                                 FontWeight="Bold"
-                                Command="{Binding submit_time}">Submit Time
+                                Command="{Binding SubmitTime}">Submit Time
                             <Button.Template>
                                 <ControlTemplate TargetType="Button">
                                     <Grid>
