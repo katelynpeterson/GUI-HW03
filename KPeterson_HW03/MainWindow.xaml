@@ -8,16 +8,15 @@
         xmlns:views="clr-namespace:KPeterson_HW03.View"
         mc:Ignorable="d"
         Title="Time Catcher App"
-        Height="350"
-        Width="525"
-        Name="TimeCatcherApp">
-    <Window.DataContext>
-        <vm:ViewModel_MainWindow />
-    </Window.DataContext>
+        Height="500"
+        Width="800"
+        Name="TimeCatcherApp"
+        DataContext="{Binding Main, Source={StaticResource Locator}}">
 
     <DockPanel>
         <Ribbon Title="My Projects"
-                DockPanel.Dock="Top">
+                DockPanel.Dock="Top"
+                SelectionChanged="Ribbon_SelectionChanged">
             <RibbonTab Header="Home">
                 <RibbonGroup Header="Actions">
                     <RibbonButton Label="Add New Project"
@@ -41,5 +40,31 @@
                 </RibbonGroup>
             </RibbonTab>
         </Ribbon>
+
+        <TabControl ItemsSource="{Binding ChildViewModels}"
+                    SelectedItem="{Binding SelectedChildViewModel}">
+            <TabControl.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding Header}" />
+                </DataTemplate>
+            </TabControl.ItemTemplate>
+            <TabControl.ContentTemplate>
+                <DataTemplate>
+                    <ContentControl Content="{Binding ViewModel}">
+                        <ContentControl.Resources>
+                            <DataTemplate DataType="{x:Type vm:ViewModel_Project}">
+                                <views:ProjectView />
+                            </DataTemplate>
+                            <DataTemplate DataType="{x:Type vm:ViewModel_TreeView}">
+                                <views:TreeView />
+                            </DataTemplate>
+                            <DataTemplate DataType="{x:Type vm:ViewModel_ProjectSummary}">
+                                <views:ProjectSummaryView />
+                            </DataTemplate>
+                        </ContentControl.Resources>
+                    </ContentControl>
+                </DataTemplate>
+            </TabControl.ContentTemplate>
+        </TabControl>
     </DockPanel>
 </Window>

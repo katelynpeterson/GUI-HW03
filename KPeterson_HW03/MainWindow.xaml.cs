@@ -17,5 +17,10 @@ namespace KPeterson_HW03
         {
             InitializeComponent();
         }
+
+        private void Ribbon_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
     }
 }

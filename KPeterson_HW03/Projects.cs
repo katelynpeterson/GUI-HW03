@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using System.Windows.Media;
 using KPeterson_HW03.ViewModel;
 
 namespace KPeterson_HW03
@@ -89,6 +90,14 @@ namespace KPeterson_HW03
                 OnPropertyChanged("FavoriteProject");
             }
         }
+
+        private Color projectColor;
+        public Color ProjectColor
+        {
+            get { return projectColor; }
+            set { SetField(ref projectColor, value); }
+        }
+
 
         private TimeSpan _time;
         public TimeSpan Time
