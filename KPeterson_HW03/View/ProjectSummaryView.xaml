@@ -15,7 +15,7 @@
         <DataGrid ItemsSource="{Binding Path=ProjectList}">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Name"
-                                    Binding="{Binding Name}"/>
+                                    Binding="{Binding Name}" />
                 <DataGridTextColumn Header="Type"
                                     Binding="{Binding Type}" />
                 <DataGridTextColumn Header="Start Date"

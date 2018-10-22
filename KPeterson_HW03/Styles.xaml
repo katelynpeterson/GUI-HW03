@@ -72,6 +72,8 @@
                 Value="{Binding BtnHeight}" />
         <Setter Property="BorderThickness"
                 Value="0" />
+        <Setter Property="Background"
+                Value="{Binding Projects.ProjectColor}" />
     </Style>
     
     <Style x:Key="ProjectTextStyle"

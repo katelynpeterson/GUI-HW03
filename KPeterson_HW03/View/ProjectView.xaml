@@ -8,7 +8,9 @@
              mc:Ignorable="d"
              d:DesignHeight="600"
              d:DesignWidth="800">
-
+    <UserControl.DataContext>
+        <vm:ViewModel_Project />
+    </UserControl.DataContext>
     <UserControl.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -17,13 +19,11 @@
                     <BooleanToVisibilityConverter x:Key="BoolToVis" />
 
                     <DataTemplate x:Key="ProjectDetails">
-
                         <TextBlock Text="{Binding Name}"
                                    FontSize="30"
                                    FontStyle="Oblique"
                                    HorizontalAlignment="Center"
                                    Margin="10" />
-
                     </DataTemplate>
                 </ResourceDictionary>
             </ResourceDictionary.MergedDictionaries>
@@ -32,8 +32,8 @@
     </UserControl.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition />
-            <ColumnDefinition />
+            <ColumnDefinition Width="auto" />
+            <ColumnDefinition Width="auto"/>
         </Grid.ColumnDefinitions>
 
         <Grid.RowDefinitions>
@@ -41,60 +41,32 @@
             <RowDefinition Height="auto" />
             <RowDefinition Height="auto" />
         </Grid.RowDefinitions>
-        <ListView Grid.ColumnSpan="2"
+
+        <Expander Header="Project List"
+                  Grid.ColumnSpan="2">
+            <ListView 
                   Name="listViewProjects"
-                  ItemsSource="{Binding Source={StaticResource ProjectDetails}, Path=Project}"
+                  ItemsSource="{Binding Path=ProjectList}"
+                  SelectedItem="{Binding SelectedProject}"
                   SelectedIndex="0"
-                  Background="Transparent">
-            <Expander>
-                <ListViewItem>
-                    <Button Background="{Binding ButtonBackgroundColor}"
+                  Background="Transparent"
+                  >
+
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <Button Background="{Binding ProjectColor}"
                             Style="{StaticResource ProjectButtonStyle}"
-                            Template="{DynamicResource ProjectButtonTemplate}"
-                            Content="{Binding Name}">
-                    </Button>
-                </ListViewItem>
-
-            </Expander>
-        </ListView>
-                <!--<Button Background="MediumSpringGreen"
-                        Style="{StaticResource ProjectButtonStyle}"
-                        Template="{DynamicResource ProjectButtonTemplate}">
-                    <TextBlock Style="{StaticResource ProjectTextStyle}"
-                               Text="{Binding Name}" />
-
-                </Button>
-
-                <Button Background="DodgerBlue"
-                        Style="{StaticResource ProjectButtonStyle}"
-                        Template="{DynamicResource ProjectButtonTemplate}">
-                    <TextBlock Style="{StaticResource ProjectTextStyle}"
-                               Text="Project Awesome" />
-                </Button>
-
-                <Button Background="LightSeaGreen"
-                        Style="{StaticResource ProjectButtonStyle}"
-                        Template="{DynamicResource ProjectButtonTemplate}">
-                    <TextBlock Style="{StaticResource ProjectTextStyle}"
-                               Text="Project GUI" />
-                </Button>
-
-                <Button Background="Orange"
-                        Style="{StaticResource ProjectButtonStyle}"
-                        Template="{DynamicResource ProjectButtonTemplate}">
-                    <TextBlock Style="{StaticResource ProjectTextStyle}"
-                               Text="Project Cheese" />
-                </Button>
-
-                <Button Background="Coral"
-                        Style="{StaticResource ProjectButtonStyle}"
-                        Template="{DynamicResource ProjectButtonTemplate}">
-                    <TextBlock Style="{StaticResource ProjectTextStyle}"
-                               Text="Project Cool" />
-                </Button>-->
-
-        <TextBlock DataContext="{Binding SelectedProject}"
-                   Text="{Binding Name}" FontSize="40" FontWeight="Bold"/>
+                                Template="{DynamicResource ProjectButtonTemplate}"
+                                Content="{Binding Name}" />
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+                <ListView.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <WrapPanel />
+                    </ItemsPanelTemplate>
+                </ListView.ItemsPanel>
+            </ListView>
+        </Expander>
 
         <StackPanel Grid.Row="2">
             <ContentControl Content="{Binding SelectedProject}"
@@ -108,6 +80,7 @@
                     <TextBox Style="{StaticResource ErrorValidation}"
                              Width="100"
                              Text="{Binding Name, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" />
+                    
                     <CheckBox Content="My Favorite Project"
                               Margin="5"
                               IsChecked="{Binding FavoriteProject, UpdateSourceTrigger=PropertyChanged}" />
@@ -117,6 +90,7 @@
                                Foreground="Red"
                                FontWeight="Bold" />
                 </StackPanel>
+
 
 
                 <StackPanel Orientation="Horizontal"

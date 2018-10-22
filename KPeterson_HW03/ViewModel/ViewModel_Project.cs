@@ -66,7 +66,7 @@ namespace KPeterson_HW03.ViewModel
         public Color RandColor()
         {
             Random randomGen = new Random();
-            return Color.FromArgb((byte)randomGen.Next(255), (byte)randomGen.Next(255), (byte)randomGen.Next(255),
+            return Color.FromRgb((byte)randomGen.Next(255), (byte)randomGen.Next(255),
            (byte)randomGen.Next(255));
         }
 
