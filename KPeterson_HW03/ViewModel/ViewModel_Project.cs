@@ -38,6 +38,8 @@ namespace KPeterson_HW03.ViewModel
             NewProject.Info.Add(new Info {ID= 2, Date = new DateTime(2018, 10, 5), Skill = "JS" });
             NewProject.Info.Add(new Info{ ID = 3, Date = new DateTime(2018, 12, 11), Skill = "HTML" });
             NewProject.Info.Add(new Info{ ID = 4, Date = new DateTime(2018, 2, 11), Skill = "CSS" });
+            NewProject.Children.Add(new Projects { ID = 3, Name = "Awesome Baby", StartDate = new DateTime(2018, 10, 22) });
+            NewProject.Children.Add(new Projects { ID = 3, Name = "Awesome Child", StartDate = new DateTime(2018, 10, 2) });
             ProjectList.Add(NewProject);
 
             NewProject = new Projects { ID = 3, StartDate = new DateTime(2018, 9, 6), Name = "Project NANO", Type = "Client", Time = new TimeSpan(13, 2, 44), ProjectColor = RandColor() };
@@ -46,6 +48,7 @@ namespace KPeterson_HW03.ViewModel
             NewProject.Info.Add(new Info { ID = 1, Date = new DateTime(2018, 9, 10), Skill = "JSON" });
             NewProject.Info.Add(new Info { ID = 1, Date = new DateTime(2018, 8, 10), Skill = "PHP" });
             NewProject.Info.Add(new Info { ID = 1, Date = new DateTime(2018, 9, 10), Skill = "CSS" });
+            NewProject.Children.Add(new Projects { ID = 3, Name = "El Nino", StartDate = new DateTime(2018, 10, 15) });
             ProjectList.Add(NewProject);
 
 
@@ -57,17 +60,18 @@ namespace KPeterson_HW03.ViewModel
 
             NewProject = new Projects { ID = 4, StartDate = new DateTime(2018, 10, 1), Name = "Demo", Type = "School", Time = new TimeSpan(0, 14, 9), ProjectColor = RandColor() };
             NewProject.Info.Add(new Info { ID = 1, Date = new DateTime(2018, 9, 4), Skill = "JS" });
+            NewProject.Children.Add(new Projects { ID = 3, Name = "Wallaby", StartDate = new DateTime(2018, 11,12) });
             ProjectList.Add(NewProject);
 
             NewProject = new Projects { ID = 4, StartDate = new DateTime(2018, 10, 1), Name = "Omega", Type = "School", Time = new TimeSpan(0, 5, 0), ProjectColor = RandColor() };
             NewProject.Info.Add(new Info { ID = 1, Date = new DateTime(2018, 9, 4), Skill = "PHP" });
             ProjectList.Add(NewProject);
 
-            AddProject = new AddProjectCommand(ProjectList);
+            //AddProject = new AddProjectCommand(ProjectList);
             SelectedProject = ProjectList.First();
         }
 
-        public ICommand AddProject { get; set; }
+       // public ICommand AddProject { get; set; }
 
         private Projects selectedProject;
         public Projects SelectedProject

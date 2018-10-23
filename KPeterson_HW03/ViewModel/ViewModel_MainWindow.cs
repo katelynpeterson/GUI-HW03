@@ -15,7 +15,8 @@ namespace KPeterson_HW03.ViewModel
         public ViewModel_MainWindow()
         {
             ChildViewModels = new ObservableCollection<ChildControl>();
-            ChildViewModels.Add(new ChildControl("New Project", new ViewModel_Project()));
+            Projectvm = new ViewModel_Project();
+            ChildViewModels.Add(new ChildControl("New Project",Projectvm));
             SelectedChildViewModel = ChildViewModels.Last();
         }
 
@@ -24,6 +25,13 @@ namespace KPeterson_HW03.ViewModel
         {
             get { return selectedChildViewModel; }
             set { SetField(ref selectedChildViewModel, value); }
+        }
+
+        private ViewModel_Project projectvm;
+        public ViewModel_Project Projectvm
+        {
+            get { return projectvm; }
+            set { SetField(ref projectvm, value); }
         }
 
 
@@ -38,8 +46,13 @@ namespace KPeterson_HW03.ViewModel
         public RelayCommand AddNewProject => addNewProject ?? (addNewProject = new RelayCommand(
             () =>
             {
-                var p = new ViewModel_Project();
-                p.AddProject = new AddProjectCommand(new ObservableCollection<Projects>());
+                var project = Projectvm.ProjectList;
+                project.Add(new Projects()
+                {
+                    Name = "New Project",
+                    StartDate = DateTime.Today,
+                    Type = "Personal"
+                });
             }));
 
         private RelayCommand treeView;

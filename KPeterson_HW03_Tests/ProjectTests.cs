@@ -43,23 +43,7 @@ namespace KPeterson_HW03_Tests
             Assert.AreEqual(project.Name, TEST_NAME_1);
         }
 
-        [TestMethod]
-        public void FavoriteProjectIsChecked()
-        {
-            var project = new Projects();
-            project.FavoriteProject = true;
-            Assert.AreEqual(true, project[nameof(project.FavoriteProject)]);
-        }
-
-        [TestMethod]
-        public void FavoriteProjectIsNotChecked()
-        {
-            var project = new Projects();
-            project.FavoriteProject = false;
-            Assert.AreEqual("", project[nameof(project.FavoriteProject)]);
-        }
-
-
+       
         //check start date against end date
         [TestMethod]
         public void EndDateCannotBeLessThanStartDate()
@@ -67,7 +51,9 @@ namespace KPeterson_HW03_Tests
             var project = new Projects();
             project.StartDate = new DateTime(12,12,12);
             project.EstimatedEndDate = new DateTime(12, 11, 12);
-            Assert.AreNotEqual(project.StartDate,project.EstimatedEndDate);
+            
+            var isEndDateAfterStartDate = project.EstimatedEndDate > project.StartDate;
+            Assert.IsFalse(isEndDateAfterStartDate,"EndDate needs to be greater than StartDate");
         }
 
         [TestMethod]
@@ -75,8 +61,9 @@ namespace KPeterson_HW03_Tests
         {
             var project = new Projects();
             project.StartDate = new DateTime(12, 12, 12);
-            project.EstimatedEndDate = new DateTime(12, 11, 12);
-            Assert.AreNotEqual(project.StartDate , project.EstimatedEndDate);
+            project.EstimatedEndDate = new DateTime(12, 12, 13);
+            var isEndDateAfterStartDate = project.EstimatedEndDate > project.StartDate;
+            Assert.IsTrue(isEndDateAfterStartDate);
         }
 
         [TestMethod]
@@ -88,6 +75,49 @@ namespace KPeterson_HW03_Tests
             var proj = new Projects { Name = TEST_NAME_1};
             projectList.Add(proj);
             Assert.AreEqual(1, projectList.Count);
+        }
+
+        //test addproject button control to see if it adds a new project to the list
+        [TestMethod]
+        public void AddNewProjectToList()
+        {
+            var vm = new ViewModel_MainWindow();
+            var initialCount = vm.Projectvm.ProjectList.Count;
+            vm.AddNewProject.Execute(this);
+            var newCount = vm.Projectvm.ProjectList.Count;
+            var isNewCountBiggerThanInitialCount = newCount > initialCount;
+
+            Assert.IsTrue(isNewCountBiggerThanInitialCount);
+        }
+
+        //test that the treeview displays another project
+        [TestMethod]
+        public void AddNewProjectToTreeView()
+        {
+            var vm = new ViewModel_MainWindow();
+            var initialCount = vm.Projectvm.ProjectList.Count;
+            vm.AddNewProject.Execute(this);
+            vm.TreeView.Execute(this);
+            
+            var newCount = vm.Projectvm.ProjectList.Count;
+            var isNewCountBiggerThanInitialCount = newCount > initialCount;
+
+            Assert.IsTrue(isNewCountBiggerThanInitialCount);
+        }
+
+        //test that the project summary displays another project
+        [TestMethod]
+        public void AddNewProjectToProjectSummary()
+        {
+            var vm = new ViewModel_MainWindow();
+            var initialCount = vm.Projectvm.ProjectList.Count;
+            vm.AddNewProject.Execute(this);
+            vm.ProjectSummary.Execute(this);
+            
+            var newCount = vm.Projectvm.ProjectList.Count;
+            var isNewCountBiggerThanInitialCount = newCount > initialCount;
+
+            Assert.IsTrue(isNewCountBiggerThanInitialCount);
         }
     }
 }

@@ -51,14 +51,16 @@ namespace KPeterson_HW03
             {
                 _endDate = value;
                 OnPropertyChanged("EndDate");
+                validateProjectDate();
             }
         }
 
-        private void validateProjectDate()
+        public void validateProjectDate()
         {
-            if (StartDate == default(DateTime))
+            if (StartDate > EstimatedEndDate)
             {
-                errors[nameof(StartDate)] = "Project must have a start date.";
+                errors[nameof(EstimatedEndDate)] = "End date must be after the start date.";
+                errors[nameof(StartDate)] = "End date must be after the start date.";
             }
         }
 
@@ -150,7 +152,22 @@ namespace KPeterson_HW03
                         return errors[nameof(Type)] = "You cannot add an empty type.";
                     }
                 }
-                
+                if (propertyName == nameof(StartDate))
+                {
+                    if (StartDate.Date > EstimatedEndDate.Date)
+                    {
+                        errors[nameof(StartDate)] = "End date must be after the start date.";
+                    }
+                }
+
+                if (propertyName == nameof(EstimatedEndDate))
+                {
+                    if (StartDate.Date > EstimatedEndDate.Date)
+                    {
+                        errors[nameof(EstimatedEndDate)] = "End date must be after the start date.";
+                    }
+                }
+
                 return null;
 
             }
