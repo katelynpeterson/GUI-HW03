@@ -25,6 +25,16 @@
                                    HorizontalAlignment="Center"
                                    Margin="10" />
                     </DataTemplate>
+
+                    <Style TargetType="CheckBox">
+                        <Style.Triggers>
+                            <Trigger Property="Validation.HasError"
+                                     Value="true">
+                                <Setter Property="ToolTip"
+                                        Value="{Binding RelativeSource={x:Static RelativeSource.Self}, Path=(Validation.Errors).CurrentItem.ErrorContent}" />
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
                 </ResourceDictionary>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
@@ -85,7 +95,7 @@
 
                         <CheckBox Content="My Favorite Project"
                                   Margin="5"
-                                  IsChecked="{Binding FavoriteProject, UpdateSourceTrigger=PropertyChanged}" />
+                                  IsChecked="{Binding FavoriteProject, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" />
                         <TextBlock Text="YAY!"
                                    Visibility="{Binding FavoriteProject, Converter={StaticResource BoolToVis}, UpdateSourceTrigger=PropertyChanged}"
                                    FontSize="14pt"
@@ -93,23 +103,20 @@
                                    FontWeight="Bold" />
                     </StackPanel>
 
-
-
                     <StackPanel Orientation="Horizontal"
                                 Margin="20">
                         <TextBlock Text="Start Date: " />
-                        <DatePicker x:Name="project_start_date"
+                        <DatePicker x:Name="StartDate"
                                     Style="{StaticResource DateErrorValidation}"
                                     SelectedDate="{Binding StartDate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" />
                     </StackPanel>
                     <StackPanel Orientation="Horizontal"
                                 Margin="20">
                         <TextBlock Text="Expected End Date: " />
-                        <DatePicker x:Name="project_end_date"
+                        <DatePicker x:Name="EstimatedEndDate"
                                     Style="{StaticResource DateErrorValidation}"
                                     SelectedDate="{Binding EstimatedEndDate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" />
                     </StackPanel>
-
                 </StackPanel>
             </StackPanel>
 

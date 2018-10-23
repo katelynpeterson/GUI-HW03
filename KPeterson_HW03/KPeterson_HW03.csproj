@@ -71,6 +71,8 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="ChildControl.cs" />
+    <Compile Include="DateValidationRules.cs" />
+    <Compile Include="Dependencies.cs" />
     <Compile Include="GlobalStringFormatConverter.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
     <Compile Include="ViewModel\ViewModel_ProjectSummary.cs" />

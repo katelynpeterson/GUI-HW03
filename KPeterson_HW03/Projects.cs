@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using System.Windows;
 using System.Windows.Media;
 using KPeterson_HW03.ViewModel;
 
@@ -39,7 +40,6 @@ namespace KPeterson_HW03
             set
             {
                 _startDate = value;
-                OnPropertyChanged("StartDate");
                 validateProjectDate();
             }
         }
@@ -50,7 +50,6 @@ namespace KPeterson_HW03
             set
             {
                 _endDate = value;
-                OnPropertyChanged("EndDate");
                 validateProjectDate();
             }
         }
@@ -80,8 +79,18 @@ namespace KPeterson_HW03
             set
             {
                 _name = value;
-                OnPropertyChanged("Name");
+                validateFavoriteProject();
             }
+        }
+
+        public bool isNameEmptyOrNull(string name)
+        {
+            if (name == "")
+                return true;
+            if (name == null)
+                return true;
+
+                return false;
         }
 
         private bool favoriteProject;
@@ -90,9 +99,20 @@ namespace KPeterson_HW03
             get { return favoriteProject; }
             set {
                 SetField(ref favoriteProject, value);
-                OnPropertyChanged("FavoriteProject");
+                validateFavoriteProject();
             }
         }
+
+        public void validateFavoriteProject()
+        {
+            if (FavoriteProject && isNameEmptyOrNull(Name))
+                errors[nameof(FavoriteProject)] = "A favorite project must have a name";
+            else
+                errors[nameof(FavoriteProject)] = null;
+
+            OnPropertyChanged(nameof(Name));
+            OnPropertyChanged(nameof(FavoriteProject));
+    }
 
         private Color projectColor;
         public Color ProjectColor
@@ -167,7 +187,6 @@ namespace KPeterson_HW03
                         errors[nameof(EstimatedEndDate)] = "End date must be after the start date.";
                     }
                 }
-
                 return null;
 
             }

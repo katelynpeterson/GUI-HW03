@@ -119,5 +119,15 @@ namespace KPeterson_HW03_Tests
 
             Assert.IsTrue(isNewCountBiggerThanInitialCount);
         }
+
+        [TestMethod]
+        public void ErrorMessageWhenEmptyProjectNameAndFavoriteProjectChecked()
+        {
+            var vm = new Projects();
+            vm.FavoriteProject = true;
+            vm.Name = "";
+            Assert.IsTrue(vm.isNameEmptyOrNull(vm.Name));
+            Assert.AreEqual("A favorite project must have a name", vm[nameof(vm.FavoriteProject)]);
+        }
     }
 }

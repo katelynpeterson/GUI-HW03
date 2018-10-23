@@ -7,6 +7,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
 
@@ -28,7 +29,7 @@ namespace KPeterson_HW03.ViewModel
 
             ProjectList = new ObservableCollection<Projects>();
 
-            NewProject = new Projects { ID = 1, StartDate = new DateTime(2018, 8, 3), Name = "Project Cool", Type = "Personal", Time = new TimeSpan(1, 24, 4), ProjectColor = RandColor() };
+            NewProject = new Projects { ID = 1, StartDate = new DateTime(2018, 8, 3), Name = "", Type = "Personal", Time = new TimeSpan(1, 24, 4), ProjectColor = RandColor() };
             NewProject.Info.Add(new Info { ID = 1, Date = new DateTime(2018, 1, 1), Skill = "UX" });
             NewProject.Info.Add(new Info { ID = 1, Date = new DateTime(2018, 2, 1), Skill = "DB" });
             ProjectList.Add(NewProject);
@@ -79,7 +80,7 @@ namespace KPeterson_HW03.ViewModel
             get { return selectedProject; }
             set { SetField(ref selectedProject, value); }
         }
-
+        
         public Color RandColor()
         {
 
