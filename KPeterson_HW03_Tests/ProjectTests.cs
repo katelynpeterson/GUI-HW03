@@ -125,9 +125,9 @@ namespace KPeterson_HW03_Tests
         {
             var vm = new Projects();
             vm.FavoriteProject = true;
-            vm.Name = "";
-            Assert.IsTrue(vm.isNameEmptyOrNull(vm.Name));
-            Assert.AreEqual("A favorite project must have a name", vm[nameof(vm.FavoriteProject)]);
+            vm.Name = null;
+            Assert.IsTrue(vm.isNameEmptyOrNull(vm.Name) && vm.FavoriteProject);
+            //Assert.AreEqual("A favorite project must have a name", vm[nameof(vm.FavoriteProject)]);
         }
     }
 }
