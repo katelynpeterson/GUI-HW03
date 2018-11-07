@@ -4,7 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:KPeterson_HW03"
-        xmlns:vm="clr-namespace:KPeterson_HW03.ViewModel"
+        xmlns:vm="clr-namespace:ViewModel;assembly=SharedViewModel2"
         xmlns:views="clr-namespace:KPeterson_HW03.View"
         mc:Ignorable="d"
         Title="Time Catcher App"

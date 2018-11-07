@@ -7,8 +7,9 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using SharedViewModel;
 
-namespace KPeterson_HW03.ViewModel
+namespace ViewModel
 {
     class ViewModel_TreeView : INotifyPropertyChanged
     {

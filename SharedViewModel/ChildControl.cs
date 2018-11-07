@@ -1,4 +1,4 @@
-﻿namespace KPeterson_HW03
+﻿namespace SharedViewModel
 {
         public class ChildControl
         {

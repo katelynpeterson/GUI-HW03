@@ -7,6 +7,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KPeterson_HW03", "KPeterson
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KPeterson_HW03_Tests", "KPeterson_HW03_Tests\KPeterson_HW03_Tests.csproj", "{4C821E89-C54F-4F44-89B3-08C95846A317}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SharedViewModel2", "SharedViewModel2\SharedViewModel2.csproj", "{45A054FD-EA36-41B4-9E12-4E7D19A8A590}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyAvalonia", "MyAvalonia\MyAvalonia.csproj", "{F32CACE3-211D-49A0-8248-2FCE2E59D689}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +25,14 @@ Global
 		{4C821E89-C54F-4F44-89B3-08C95846A317}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4C821E89-C54F-4F44-89B3-08C95846A317}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4C821E89-C54F-4F44-89B3-08C95846A317}.Release|Any CPU.Build.0 = Release|Any CPU
+		{45A054FD-EA36-41B4-9E12-4E7D19A8A590}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{45A054FD-EA36-41B4-9E12-4E7D19A8A590}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{45A054FD-EA36-41B4-9E12-4E7D19A8A590}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{45A054FD-EA36-41B4-9E12-4E7D19A8A590}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F32CACE3-211D-49A0-8248-2FCE2E59D689}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F32CACE3-211D-49A0-8248-2FCE2E59D689}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F32CACE3-211D-49A0-8248-2FCE2E59D689}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F32CACE3-211D-49A0-8248-2FCE2E59D689}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

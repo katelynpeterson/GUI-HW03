@@ -2,12 +2,10 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Drawing;
 using System.Runtime.CompilerServices;
-using System.Windows;
-using System.Windows.Media;
-using KPeterson_HW03.ViewModel;
 
-namespace KPeterson_HW03
+namespace SharedViewModel
 {
     public class Projects : INotifyPropertyChanged, IDataErrorInfo
     {
