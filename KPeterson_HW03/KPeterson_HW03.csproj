@@ -77,7 +77,6 @@
     <Compile Include="Dependencies.cs" />
     <Compile Include="GlobalStringFormatConverter.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
-    <Compile Include="ViewModel\ViewModel_MainWindow.cs" />
     <Compile Include="View\ProjectSummaryView.xaml.cs">
       <DependentUpon>ProjectSummaryView.xaml</DependentUpon>
     </Compile>

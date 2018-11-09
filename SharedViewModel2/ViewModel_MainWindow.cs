@@ -10,7 +10,8 @@ using System.Text;
 using System.Threading.Tasks;
 using ViewModel;
 
-namespace KPeterson_HW03.ViewModel
+namespace ViewModel
+
 {
     public class ViewModel_MainWindow : INotifyPropertyChanged
     {

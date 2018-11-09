@@ -26,7 +26,7 @@ namespace ViewModel
 
             ProjectList = new ObservableCollection<Projects>();
 
-            NewProject = new Projects { ID = 1, StartDate = new DateTime(2018, 8, 3), Name = null, Type = "Personal", Time = new TimeSpan(1, 24, 4) };
+            NewProject = new Projects { ID = 1, StartDate = new DateTime(2018, 8, 3), Name = "Project Cool", Type = "Personal", Time = new TimeSpan(1, 24, 4) };
             NewProject.Info.Add(new Info { ID = 1, Date = new DateTime(2018, 1, 1), Skill = "UX" });
             NewProject.Info.Add(new Info { ID = 1, Date = new DateTime(2018, 2, 1), Skill = "DB" });
             ProjectList.Add(NewProject);

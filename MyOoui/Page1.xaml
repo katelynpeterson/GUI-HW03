@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MyOoui.Page1"
+             >
+    
+    <ContentPage.Content>
+        <Grid Margin="30" HorizontalOptions="Center" VerticalOptions="Center">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+            </Grid.RowDefinitions>
+            <Label Text="Select a project" FontSize="Medium"/>
+            <ListView Grid.Row="1" x:Name="listViewProjects"
+                      ItemsSource="{Binding ProjectList}"
+                      SelectedItem="{Binding SelectedProject}"
+                      BackgroundColor="Aqua">
+
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <TextCell Text="{Binding Name}"/>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+
+            </ListView>
+            <StackLayout Grid.Row="2"
+                         BackgroundColor="LightCoral">
+                
+                <StackLayout BindingContext="{Binding SelectedProject}"
+                            Margin="10">
+                    <StackLayout Orientation="Horizontal"
+                                Margin="20">
+                        <Label  Text="Project Name: " />
+                        <Label Text="{Binding Name}" />
+                    </StackLayout>
+
+                    <StackLayout Orientation="Horizontal"
+                                Margin="20">
+                        <Label Text="Start Date: " />
+                        <Label Text="{Binding StartDate}" />
+                    </StackLayout>
+                    <StackLayout Orientation="Horizontal"
+                                Margin="20">
+                        <Label Text="Expected End Date: " />
+                        <Label Text="{Binding EstimatedEndDate}" />
+                    </StackLayout>
+                </StackLayout>
+            </StackLayout>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>
